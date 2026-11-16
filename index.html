@@ -2956,6 +2956,29 @@
             it.badge.addEventListener('pointercancel', end);
             it.badge.addEventListener('lostpointercapture', end);
           });
+
+          // scroll: touch screens have no mouse to brush the rail, so scrolling the
+          // page gives the on-screen badges a small swing + strap bounce instead.
+          // Neighbours swing opposite ways with slightly different strength.
+          if (!finePointer) {
+            const kick = items.map((_, i) => (i % 2 ? 1 : -1) * (0.7 + ((i * 37) % 10) / 20));
+            let lastY = window.scrollY;
+            window.addEventListener('scroll', () => {
+              const y = window.scrollY;
+              const dy = clamp(y - lastY, -40, 40);
+              lastY = y;
+              if (!dy || !visible) return;
+              const vh = window.innerHeight;
+              items.forEach((it, i) => {
+                if (it.drag) return;
+                const r = it.li.getBoundingClientRect();
+                if (r.bottom < 0 || r.top > vh) return;
+                it.w = clamp(it.w + dy * 0.009 * kick[i], -0.7, 0.7);   // gentle swing (≈ 5–8°)
+                it.v = clamp(it.v + dy * 0.9, -140, 140);               // subtle strap bounce (≈ 5px)
+              });
+              wake();
+            }, { passive: true });
+          }
         }
       }
 
