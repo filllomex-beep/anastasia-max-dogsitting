@@ -1,0 +1,2836 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <title data-i18n="meta.title">Anastasia &amp; Maxim, home dog sitting</title>
+  <meta name="description" data-i18n-attr="content:meta.desc"
+    content="Your dog stays with a caring couple who work from home: three walks a day, sofa allowed, the dog beach nearby. Real reviews from real owners.">
+  <meta property="og:title" content="Anastasia &amp; Maxim, home dog sitting">
+  <meta property="og:description"
+    content="Three walks a day, sofa allowed, the dog beach nearby. Your dog is never home alone.">
+  <meta property="og:image" content="assets/img/hero-anastasia-with-cocker-spaniel.jpg">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F5F2ED">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23B4432E'%3E%3Cellipse cx='9' cy='12' rx='3' ry='4'/%3E%3Cellipse cx='16' cy='8.5' rx='3' ry='4'/%3E%3Cellipse cx='23' cy='12' rx='3' ry='4'/%3E%3Cpath d='M16 15c-4.6 0-8 4.6-8 8.2 0 2.4 1.9 3.8 4.2 3.8 1.6 0 2.5-.8 3.8-.8s2.2.8 3.8.8c2.3 0 4.2-1.4 4.2-3.8 0-3.6-3.4-8.2-8-8.2z'/%3E%3C/g%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Onest:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/img/hero-anastasia-with-cocker-spaniel.jpg" fetchpriority="high">
+
+  <style>
+    /* =====================================================================
+       DESIGN TOKENS  (mirror of design-system/MASTER.md)
+       ===================================================================== */
+    :root {
+      --bg: #F5F2ED;
+      --paper: #FFFFFF;
+      --ink: #151413;
+      --ink-2: #4F4A44;
+      --muted: #8C857C;
+      --muted-sm: #6E675F;
+      --line: #E4DED5;
+      --band: #ECE7DF;
+      --accent: #B4432E;
+      --accent-soft: #F2E1DA;
+
+      /* lanyard straps / badge bands */
+      --terracotta: #C4573F;
+      --sage: #6E8B76;
+      --navy: #2E4357;
+      --mustard: #D4A343;
+
+      --font-display: "Cormorant Garamond", "Times New Roman", serif;
+      --font-ui: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-ui: cubic-bezier(0.4, 0, 0.2, 1);
+
+      --gutter: clamp(16px, 4vw, 40px);
+      --section-y: clamp(96px, 13vw, 176px);
+      --w-text: 680px;
+      --w-wide: 1040px;
+      --w-page: 1200px;
+    }
+
+    /* =====================================================================
+       BASE
+       ===================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-ui);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      z-index: 100;
+      background: var(--ink);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: top .2s var(--ease-ui);
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--w-page);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .text-col {
+      max-width: var(--w-text);
+      margin: 0 auto;
+    }
+
+    /* =====================================================================
+       REVEAL ON SCROLL (only when JS is running)
+       ===================================================================== */
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+      transition-delay: calc(var(--i, 0) * 70ms);
+    }
+
+    .js [data-reveal].is-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* =====================================================================
+       TOP BAR
+       ===================================================================== */
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      transition: background-color .3s var(--ease-ui), box-shadow .3s var(--ease-ui);
+    }
+
+    .topbar.is-scrolled {
+      background: rgba(245, 242, 237, .86);
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      backdrop-filter: saturate(1.4) blur(14px);
+      box-shadow: 0 1px 0 var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 68px;
+      max-width: var(--w-page);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .brand small {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted-sm);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .7);
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    .lang button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      padding: 6px 11px;
+      border-radius: 999px;
+      color: var(--muted-sm);
+      transition: background-color .2s var(--ease-ui), color .2s var(--ease-ui);
+    }
+
+    .lang button:hover {
+      color: var(--ink);
+    }
+
+    .lang button[aria-pressed="true"] {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 16px 26px;
+      border-radius: 999px;
+      transition: transform .2s var(--ease-ui), background-color .2s var(--ease-ui), box-shadow .2s var(--ease-ui);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    .btn:active {
+      transform: scale(.98);
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      flex: none;
+    }
+
+    .btn--dark {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .btn--dark:hover {
+      background: #2a2826;
+    }
+
+    .btn--accent {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 10px 24px -12px rgba(180, 67, 46, .7);
+    }
+
+    .btn--accent:hover {
+      background: #9f3a27;
+    }
+
+    .btn--sm {
+      font-size: 13px;
+      padding: 10px 16px;
+    }
+
+    @media (max-width: 640px) {
+
+      .brand small,
+      .topbar .btn--sm {
+        display: none;
+      }
+    }
+
+    /* =====================================================================
+       HERO
+       ===================================================================== */
+    .hero {
+      padding: clamp(112px, 14vw, 168px) var(--gutter) clamp(56px, 8vw, 96px);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-template-rows: auto auto;
+    }
+
+    .hero-title {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      z-index: 3;
+      align-self: start;
+      /* one grid column — lines up with .hero-intro and centres the hero group */
+      padding-left: calc(100% / 12);
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(56px, 9.6vw, 144px);
+      line-height: .9;
+      letter-spacing: -0.02em;
+      pointer-events: none;
+    }
+
+    .hero-title em {
+      color: var(--accent);
+    }
+
+    /* room for descenders (g, p, д) inside the clipping mask;
+       the negative margin keeps the original line spacing */
+    .hero-title .line {
+      display: block;
+      overflow: hidden;
+      padding-bottom: .22em;
+      margin-bottom: -.16em;
+    }
+
+    .hero-title .line>span {
+      display: inline-block;
+    }
+
+    /* start fully below the (taller) mask */
+    .js .hero-title .line>span {
+      transform: translate3d(0, 130%, 0);
+      transition: transform 1s var(--ease-out);
+    }
+
+    .js .hero-title .line:nth-child(2)>span {
+      transition-delay: .09s;
+    }
+
+    .js .is-loaded .hero-title .line>span {
+      transform: none;
+    }
+
+    .hero-media {
+      grid-column: 8 / 12;
+      grid-row: 1 / 3;
+      position: relative;
+      margin-top: clamp(48px, 6.4vw, 96px);
+    }
+
+    .hero-photo {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 40px 60px -40px rgba(30, 22, 12, .45);
+      background: var(--band);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .js .hero-photo img {
+      transform: scale(1.06);
+      opacity: 0;
+      transition: transform 1.4s var(--ease-out), opacity .9s var(--ease-out);
+    }
+
+    .js .is-loaded .hero-photo img {
+      transform: none;
+      opacity: 1;
+    }
+
+    .hero-polaroid {
+      position: absolute;
+      left: -28%;
+      bottom: -9%;
+      width: 42%;
+      z-index: 2;
+      background: #fff;
+      padding: 6px 6px 22px;
+      border-radius: 3px;
+      transform: rotate(-6deg);
+      box-shadow: 0 24px 40px -24px rgba(30, 22, 12, .55);
+    }
+
+    .hero-polaroid img {
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .hero-intro {
+      grid-column: 2 / 6;
+      grid-row: 2;
+      align-self: end;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 40px;
+      padding-bottom: 6%;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--ink-2);
+    }
+
+    .hero-intro img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex: none;
+      box-shadow: 0 0 0 3px #fff;
+    }
+
+    .hero-intro strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        grid-column: 1;
+        padding-left: 0;
+        text-align: left;
+      }
+
+      .hero-media {
+        grid-column: 1;
+        grid-row: 2;
+        width: min(78vw, 360px);
+        margin: 36px auto 0;
+      }
+
+      .hero-intro {
+        grid-column: 1;
+        grid-row: 3;
+        margin: 72px auto 0;
+        padding: 0;
+        max-width: 360px;
+        width: 100%;
+      }
+
+      .hero-polaroid {
+        left: -12%;
+        bottom: -12%;
+        width: 40%;
+      }
+    }
+
+    /* =====================================================================
+       TABLE OF CONTENTS CARD
+       ===================================================================== */
+    .toc {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .03), 0 30px 60px -40px rgba(30, 22, 12, .3);
+    }
+
+    .toc ol {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, auto);
+      grid-auto-flow: column;
+      gap: 4px 28px;
+      margin-bottom: 24px;
+      counter-reset: toc;
+    }
+
+    .toc ol a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 0;
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--ink-2);
+      border-bottom: 1px solid var(--line);
+      transition: color .2s var(--ease-ui);
+    }
+
+    .toc ol a::before {
+      counter-increment: toc;
+      content: counter(toc, decimal-leading-zero);
+      font-size: 11px;
+      color: var(--muted-sm);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .toc ol a::after {
+      content: "";
+      margin-left: auto;
+      width: 14px;
+      height: 14px;
+      flex: none;
+      background: currentColor;
+      opacity: .35;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M19 12l-7 7-7-7'/%3E%3C/svg%3E") center / contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M19 12l-7 7-7-7'/%3E%3C/svg%3E") center / contain no-repeat;
+      transition: transform .2s var(--ease-ui), opacity .2s var(--ease-ui);
+    }
+
+    .toc ol a:hover {
+      color: var(--ink);
+    }
+
+    .toc ol a:hover::after {
+      opacity: 1;
+      transform: translateY(2px);
+      color: var(--accent);
+    }
+
+    .toc .btn {
+      width: 100%;
+    }
+
+    @media (max-width: 560px) {
+      .toc {
+        padding: 20px;
+      }
+
+      .toc ol {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        grid-auto-flow: row;
+      }
+    }
+
+    /* =====================================================================
+       SECTION SHELL — eyebrow + two-tone heading
+       ===================================================================== */
+    .section {
+      padding: var(--section-y) 0 0;
+      scroll-margin-top: 40px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted-sm);
+    }
+
+    .eyebrow::before {
+      content: attr(data-num);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .eyebrow>i {
+      width: 40px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .h2 {
+      font-size: clamp(28px, 3.6vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .h2>span {
+      display: block;
+      color: var(--muted);
+    }
+
+    .h2 .muted {
+      display: inline;
+      color: var(--muted);
+    }
+
+    /* longer, sentence-style headline (About) */
+    .h2--statement {
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
+    .lead {
+      margin-top: 24px;
+      color: var(--ink-2);
+    }
+
+    .lead+.lead {
+      margin-top: 14px;
+    }
+
+    /* layout with an asymmetric photo aside at wide screens */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    @media (min-width: 1280px) {
+      .container.split {
+        max-width: 1440px;
+      }
+
+      .split {
+        grid-template-columns: minmax(0, 1fr) var(--w-text) minmax(0, 1fr);
+        column-gap: 56px;
+        align-items: start;
+      }
+
+      .split>.text-col {
+        grid-column: 2;
+        grid-row: 1;
+        margin: 0;
+      }
+
+      .split>.aside--right {
+        grid-column: 3;
+        grid-row: 1;
+      }
+
+      .split>.aside--left {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: end;
+      }
+    }
+
+    /* =====================================================================
+       001 ABOUT
+       ===================================================================== */
+    .facts {
+      margin-top: 48px;
+      border-top: 1px solid var(--line);
+    }
+
+    .facts li {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 8px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+      color: var(--ink-2);
+    }
+
+    .facts li::before {
+      content: attr(data-n);
+      font-size: 12px;
+      color: var(--muted-sm);
+      padding-top: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+      transition: background-size .3s var(--ease-out);
+    }
+
+    .text-link:hover {
+      background-size: 100% 1px;
+    }
+
+    .text-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform .2s var(--ease-ui);
+    }
+
+    .text-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .aside-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: var(--w-text);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .aside-photos img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    @media (min-width: 1280px) {
+
+      /* rotation lives on the <img> so the reveal transform on <figure> doesn't override it */
+      .aside-photos {
+        display: block;
+        position: sticky;
+        top: 110px;
+        max-width: 250px;
+        margin: 120px 0 0;
+      }
+
+      .aside-photos figure {
+        width: 82%;
+      }
+
+      .aside-photos figure+figure {
+        margin-top: -36px;
+      }
+
+      .aside-photos figure:nth-child(2) {
+        margin-left: 18%;
+      }
+
+      .aside-photos figure:nth-child(1) img {
+        transform: rotate(3deg);
+      }
+
+      .aside-photos figure:nth-child(2) img {
+        transform: rotate(-4deg);
+      }
+
+      .aside-photos figure:nth-child(3) img {
+        transform: rotate(2deg);
+      }
+
+      .aside-photos img {
+        border: 6px solid #fff;
+        border-radius: 4px;
+        box-shadow: 0 24px 40px -26px rgba(30, 22, 12, .55);
+      }
+    }
+
+    /* =====================================================================
+       002 IS IT FOR YOUR DOG
+       ===================================================================== */
+    .fit-list {
+      margin-top: 36px;
+    }
+
+    .fit-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 0;
+      font-size: 16px;
+      color: var(--ink-2);
+    }
+
+    .fit-list li::before {
+      content: "";
+      flex: none;
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      background: var(--accent);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='9' cy='12' rx='3' ry='4'/%3E%3Cellipse cx='16' cy='8.5' rx='3' ry='4'/%3E%3Cellipse cx='23' cy='12' rx='3' ry='4'/%3E%3Cpath d='M16 15c-4.6 0-8 4.6-8 8.2 0 2.4 1.9 3.8 4.2 3.8 1.6 0 2.5-.8 3.8-.8s2.2.8 3.8.8c2.3 0 4.2-1.4 4.2-3.8 0-3.6-3.4-8.2-8-8.2z'/%3E%3C/svg%3E") center / contain no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='9' cy='12' rx='3' ry='4'/%3E%3Cellipse cx='16' cy='8.5' rx='3' ry='4'/%3E%3Cellipse cx='23' cy='12' rx='3' ry='4'/%3E%3Cpath d='M16 15c-4.6 0-8 4.6-8 8.2 0 2.4 1.9 3.8 4.2 3.8 1.6 0 2.5-.8 3.8-.8s2.2.8 3.8.8c2.3 0 4.2-1.4 4.2-3.8 0-3.6-3.4-8.2-8-8.2z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+
+    .fit-photo {
+      max-width: var(--w-text);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .fit-photo img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    @media (min-width: 1280px) {
+      .fit-photo {
+        max-width: 260px;
+        margin: 60px 0 0;
+        position: sticky;
+        top: 110px;
+      }
+
+      .fit-photo img {
+        aspect-ratio: 4 / 5;
+        border: 6px solid #fff;
+        border-radius: 4px;
+        transform: rotate(-3deg);
+        box-shadow: 0 24px 40px -26px rgba(30, 22, 12, .55);
+      }
+    }
+
+    /* =====================================================================
+       003 HOW A STAY GOES
+       ===================================================================== */
+    .phase {
+      margin-top: 44px;
+    }
+
+    .phase-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 3px;
+    }
+
+    .phase p {
+      color: var(--ink-2);
+    }
+
+    .stay-photos {
+      max-width: var(--w-wide);
+      margin: 56px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .stay-photos img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 6px;
+      background: var(--band);
+    }
+
+    .stay-photos figcaption {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted-sm);
+    }
+
+    .stay-photos li:nth-child(even) {
+      margin-top: 40px;
+    }
+
+    @media (max-width: 860px) {
+      .stay-photos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* =====================================================================
+       004 OUR GUESTS — LANYARD RAIL
+       ===================================================================== */
+    .guests-head {
+      max-width: var(--w-text);
+      margin: 0 auto;
+    }
+
+    .rail-scroller {
+      margin-top: 40px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+
+    .rail-stage {
+      --slot: clamp(148px, calc((100vw - 96px) / 8), 180px);
+      --card-w: calc(var(--slot) - 14px);
+      --card-h: calc(var(--card-w) * 1.54 + (180px - var(--slot)) * 0.5);
+      /* a bit taller when narrow */
+      --rail-y: 30px;
+      position: relative;
+      max-width: 1504px;
+      margin: 0 auto;
+      min-width: calc(8 * var(--slot) + 64px);
+      height: calc(var(--rail-y) + 150px + 30px + var(--card-h) + 70px);
+      padding: 0 32px;
+      background-image: radial-gradient(rgba(21, 20, 19, .07) 1px, transparent 1.2px);
+      background-size: 22px 22px;
+    }
+
+    /* wide screens: everything fits, so let pulled badges overflow freely */
+    @media (min-width: 1280px) {
+      .rail-scroller {
+        overflow: visible;
+      }
+    }
+
+    .rail {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: calc(var(--rail-y) - 5px);
+      height: 10px;
+      z-index: 3;
+      border-radius: 5px;
+      background: linear-gradient(#f2f2f2 0%, #bdbdbd 35%, #8a8a8a 60%, #c9c9c9 100%);
+      box-shadow: 0 3px 6px -2px rgba(0, 0, 0, .35);
+    }
+
+    .rail::before,
+    .rail::after {
+      content: "";
+      position: absolute;
+      top: -9px;
+      width: 16px;
+      height: 28px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #6f6f6f, #c8c8c8 40%, #7c7c7c);
+      box-shadow: 0 4px 8px -3px rgba(0, 0, 0, .4);
+    }
+
+    .rail::before {
+      left: -4px;
+    }
+
+    .rail::after {
+      right: -4px;
+    }
+
+    .lanyards {
+      position: relative;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lanyard {
+      position: relative;
+      width: var(--slot);
+      height: 100%;
+      flex: none;
+    }
+
+    .swing {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: var(--rail-y);
+      transform-origin: 50% 0;
+      will-change: transform;
+    }
+
+    .loop {
+      position: absolute;
+      left: 50%;
+      top: -12px;
+      width: 20px;
+      height: 22px;
+      margin-left: -10px;
+      z-index: 4;
+      border: 3px solid var(--strap);
+      border-radius: 10px 10px 4px 4px;
+      border-bottom-color: transparent;
+    }
+
+    .strap {
+      width: 15px;
+      height: var(--len);
+      margin: 0 auto;
+      transform-origin: 50% 0;
+      will-change: transform;
+      border-radius: 2px;
+      background:
+        repeating-linear-gradient(135deg, rgba(0, 0, 0, .16) 0 2px, transparent 2px 5px),
+        linear-gradient(90deg, rgba(0, 0, 0, .22), transparent 30%, transparent 70%, rgba(0, 0, 0, .22)),
+        var(--strap);
+    }
+
+    .hang {
+      will-change: transform;
+    }
+
+    .ring {
+      width: 26px;
+      height: 26px;
+      margin: -3px auto 0;
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      background: radial-gradient(circle, #111 0 34%, #333 35% 48%, #d6d6d6 50% 66%, #8b8b8b 70%);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .35);
+    }
+
+    .clip {
+      width: 32px;
+      height: 16px;
+      margin: -3px auto -7px;
+      position: relative;
+      z-index: 3;
+      border-radius: 3px 3px 7px 7px;
+      background: linear-gradient(#f0f0f0, #a3a3a3);
+      box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+    }
+
+    .clip::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 4px;
+      width: 18px;
+      height: 3px;
+      margin-left: -9px;
+      border-radius: 2px;
+      background: rgba(0, 0, 0, .25);
+    }
+
+    .badge {
+      display: block;
+      width: var(--card-w);
+      height: var(--card-h);
+      margin: 0 auto;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: grab;
+      perspective: 1000px;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .badge:active {
+      cursor: grabbing;
+    }
+
+    .badge:focus-visible {
+      outline-offset: 6px;
+      border-radius: 12px;
+    }
+
+    .badge-inner {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform .8s var(--ease-out);
+    }
+
+    .badge.is-flipped .badge-inner {
+      transform: rotateY(180deg);
+    }
+
+    .face {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #fff;
+      text-align: center;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .04), 0 2px 6px rgba(20, 16, 10, .08), 0 22px 34px -20px rgba(20, 16, 10, .45);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .face img {
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    .face>* {
+      flex-shrink: 0;
+    }
+
+    .band {
+      position: relative;
+      width: 100%;
+      height: 30%;
+      flex: none;
+      background:
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .13) 0 6px, transparent 6px 14px),
+        var(--strap);
+    }
+
+    .slot {
+      position: absolute;
+      top: 9px;
+      left: 50%;
+      width: 34px;
+      height: 7px;
+      margin-left: -17px;
+      border-radius: 4px;
+      background: var(--bg);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, .4);
+    }
+
+    .avatar {
+      width: 52%;
+      aspect-ratio: 1;
+      margin-top: -26%;
+      border-radius: 50%;
+      object-fit: cover;
+      flex: none;
+      border: 3px solid #fff;
+      box-shadow: 0 6px 14px -6px rgba(0, 0, 0, .4);
+      background: var(--band);
+      position: relative;
+    }
+
+    /* dog's name — the badge headline */
+    .b-name {
+      margin-top: 8px;
+      padding: 0 8px;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(21px, calc(var(--card-w) * 0.15), 25px);
+      font-weight: 500;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .b-breed {
+      margin-top: 4px;
+      padding: 0 8px;
+      font-size: clamp(11px, calc(var(--card-w) * 0.08), 12.5px);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .b-role {
+      margin-top: 2px;
+      padding: 0 8px;
+      font-size: clamp(10.5px, calc(var(--card-w) * 0.075), 11.5px);
+      line-height: 1.3;
+      color: var(--ink-2);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* pinned to the bottom of the card */
+    .b-dept {
+      margin-top: auto;
+      padding: 8px 0 12px;
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted-sm);
+      white-space: nowrap;
+    }
+
+    .face.back {
+      transform: rotateY(180deg);
+      justify-content: flex-end;
+      color: #fff;
+      text-align: left;
+    }
+
+    .face.back img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .face.back::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, .72));
+    }
+
+    .back-text {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 12px;
+    }
+
+    .back-text strong {
+      display: block;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .back-text span {
+      display: block;
+      margin-top: 3px;
+      font-size: 10.5px;
+      opacity: .85;
+    }
+
+    .back-text strong+span {
+      margin-top: 6px;
+      font-weight: 600;
+      opacity: 1;
+    }
+
+    .rail-foot {
+      max-width: var(--w-text);
+      margin: 8px auto 0;
+      text-align: center;
+    }
+
+    .rail-hint {
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .rail-hint .hint-touch {
+      display: none;
+    }
+
+    .is-touch .rail-hint .hint-fine {
+      display: none;
+    }
+
+    .is-touch .rail-hint .hint-touch {
+      display: inline;
+    }
+
+    .rail-cta {
+      margin-top: 28px;
+    }
+
+    /* =====================================================================
+       005 REVIEWS
+       ===================================================================== */
+    .reviews {
+      margin-top: 48px;
+      display: grid;
+      gap: 28px;
+    }
+
+    .review {
+      position: relative;
+      background: var(--paper);
+      border-radius: 16px;
+      padding: 26px 28px 24px;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .03), 0 24px 40px -34px rgba(30, 22, 12, .4);
+      width: calc(100% - 28px);
+    }
+
+    .review:nth-child(odd) {
+      margin-left: 28px;
+    }
+
+    .review-avatar {
+      position: absolute;
+      bottom: -14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1;
+      box-shadow: 0 0 0 4px var(--bg);
+    }
+
+    .review:nth-child(odd) .review-avatar {
+      left: -20px;
+    }
+
+    .review:nth-child(even) .review-avatar {
+      right: -20px;
+    }
+
+    .review-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .review-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .review-head time {
+      font-size: 12px;
+      color: var(--muted-sm);
+    }
+
+    .review-verified {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted-sm);
+      background: var(--bg);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .review-text {
+      margin: 14px 0 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+
+    .review-text .heart {
+      color: var(--accent);
+    }
+
+    .review-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted-sm);
+    }
+
+    .review-note button {
+      border: 0;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      color: var(--ink);
+      font-size: 12px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .review-note button:hover {
+      color: var(--accent);
+    }
+
+    /* =====================================================================
+       006 CTA + FOOTER
+       ===================================================================== */
+    .cta {
+      text-align: center;
+      padding-bottom: clamp(80px, 10vw, 140px);
+    }
+
+    .cta .eyebrow {
+      justify-content: center;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(48px, 7.4vw, 104px);
+      line-height: .95;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-title em {
+      color: var(--accent);
+    }
+
+    .cta-text {
+      max-width: 440px;
+      margin: 24px auto 0;
+      color: var(--ink-2);
+      font-size: 15px;
+    }
+
+    .cta-actions {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cta-handle {
+      font-size: 14px;
+      color: var(--muted-sm);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .cta-handle:hover,
+    .cta-handle:focus-visible {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 28px var(--gutter) 36px;
+    }
+
+    .footer-inner {
+      max-width: var(--w-page);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--muted-sm);
+    }
+
+    /* =====================================================================
+       REDUCED MOTION
+       ===================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .js [data-reveal],
+      .js .hero-title .line>span,
+      .js .hero-photo img {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .badge-inner {
+        transition: none;
+      }
+
+      .badge.is-flipped .badge-inner {
+        transform: none;
+      }
+
+      .badge .face.back {
+        transform: none;
+        opacity: 0;
+      }
+
+      .badge.is-flipped .face.back {
+        opacity: 1;
+      }
+
+      .badge.is-flipped .face.front {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main" data-i18n="nav.skip">Skip to content</a>
+
+  <!-- =====================================================================
+       TOP BAR — brand, language switcher, booking
+       ===================================================================== -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">
+        <span data-i18n="brand.name">Anastasia &amp; Maxim</span>
+        <small data-i18n="brand.tag">Dog sitting</small>
+      </a>
+      <div class="topbar-actions">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+          <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+        </div>
+        <a class="btn btn--dark btn--sm" href="#contact" data-i18n="nav.book">Book a stay</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- =====================================================================
+         HERO
+         ===================================================================== -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          <span class="line"><span data-i18n="hero.l1">Your dog's</span></span>
+          <span class="line"><span data-i18n="hero.l2"><em>second</em> home</span></span>
+        </h1>
+
+        <div class="hero-media">
+          <div class="hero-photo">
+            <img src="assets/img/hero-anastasia-with-cocker-spaniel.jpg" width="720" height="960"
+              alt="Anastasia on the sofa next to a black-and-tan cocker spaniel" data-i18n-attr="alt:alt.hero"
+              fetchpriority="high">
+          </div>
+          <figure class="hero-polaroid">
+            <img src="assets/img/hero-max-with-merle-dog.jpg" width="640" height="640"
+              alt="Maxim hugging a fluffy merle dog on the sofa" data-i18n-attr="alt:alt.heroMax" loading="eager">
+          </figure>
+        </div>
+
+        <p class="hero-intro">
+          <img src="assets/img/anastasia-and-maxim.jpg" width="360" height="360" alt="Anastasia and Maxim by the sea"
+            data-i18n-attr="alt:alt.couple">
+          <span data-i18n="hero.by">Home dog sitting<br>by <strong>Anastasia &amp; Maxim</strong></span>
+        </p>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TABLE OF CONTENTS
+         ===================================================================== -->
+    <div class="container">
+      <nav class="toc" aria-label="On this page" data-i18n-attr="aria-label:toc.aria" data-reveal>
+        <ol>
+          <li><a href="#about" data-i18n="toc.about">About us</a></li>
+          <li><a href="#fit" data-i18n="toc.fit">Is it right for your dog?</a></li>
+          <li><a href="#stay" data-i18n="toc.stay">How a stay goes</a></li>
+          <li><a href="#guests" data-i18n="toc.guests">Our guests</a></li>
+          <li><a href="#reviews" data-i18n="toc.reviews">Reviews</a></li>
+        </ol>
+        <a class="btn btn--dark" href="#contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="16" rx="2" />
+            <path d="M16 3v4M8 3v4M3 10h18" />
+          </svg>
+          <span data-i18n="toc.cta">Book a stay</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- =====================================================================
+         001 — ABOUT US
+         ===================================================================== -->
+    <section class="section" id="about">
+      <div class="container split">
+        <div class="text-col">
+          <div class="eyebrow" data-num="001" data-reveal><i></i><span data-i18n="about.label">About us</span></div>
+          <h2 class="h2 h2--statement" data-reveal data-i18n="about.title">What matters most to us<span>is that every
+              dog feels calm, comfortable and cared for while their owner is away.</span></h2>
+          <p class="lead" data-reveal data-i18n="about.p1">Hi! We're Anastasia and Maxim, a couple who adore animals of
+            every breed and personality. We've cared for tiny pups and big breeds like the Belgian Shepherd, and we look
+            after every pet as if it were our own, making sure they feel safe, happy and at home.</p>
+          <p class="lead" data-reveal data-i18n="about.p2">We're young IT and business professionals working from home,
+            so we're around most of the day, with plenty of time for play, walks and quiet cuddles.</p>
+          <p class="lead" data-reveal data-i18n="about.p3">Before every stay, we meet with you to get to know each
+            other and ask for your instructions, preferences and any little nuances, so that your time away causes as
+            little disruption as possible for your four-legged child.</p>
+          <p class="lead" data-reveal data-i18n="about.p4">We're based an hour south of Barcelona, Spain, but we can
+            drive to Barcelona or nearby cities to pick up and drop off your dog.</p>
+
+          <ol class="facts">
+            <li data-n="01" data-reveal data-i18n="fact.1">We work from home. Your dog gets company, attention and
+              cuddles all day.</li>
+            <li data-n="02" data-reveal data-i18n="fact.2">Three walks a day: morning, midday and evening.</li>
+            <li data-n="03" data-reveal data-i18n="fact.3">A dog-friendly flat with a closed balcony.</li>
+            <li data-n="04" data-reveal data-i18n="fact.4">Dogs are welcome on the sofa. Comfort is part of the stay.
+            </li>
+            <li data-n="05" data-reveal data-i18n="fact.5">The dog beach is close by, and there's a small park right in
+              front of our building.</li>
+            <li data-n="06" data-reveal data-i18n="fact.6">Experience with senior dogs, puppies and dogs that aren't
+              keen on other dogs.</li>
+          </ol>
+          <a class="text-link" href="#contact">
+            <span data-i18n="about.link">Write to us</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+
+        <aside class="aside--right" aria-hidden="false">
+          <div class="aside-photos">
+            <figure data-reveal style="--i:0"><img src="assets/img/anastasia-cocker-spaniel-kiss.jpg" width="800"
+                height="1000" loading="lazy" decoding="async" alt="A cocker spaniel giving Anastasia a kiss"
+                data-i18n-attr="alt:alt.kiss"></figure>
+            <figure data-reveal style="--i:1"><img src="assets/img/max-hugging-shepherd-mix.jpg" width="800"
+                height="1000" loading="lazy" decoding="async" alt="Maxim hugging a shepherd-type dog in the living room"
+                data-i18n-attr="alt:alt.maxShepherd"></figure>
+            <figure data-reveal style="--i:2"><img src="assets/img/max-with-italian-greyhound.jpg" width="800"
+                height="1000" loading="lazy" decoding="async" alt="Maxim on the sofa with an Italian greyhound"
+                data-i18n-attr="alt:alt.maxGreyhound"></figure>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         002 — IS IT RIGHT FOR YOUR DOG
+         ===================================================================== -->
+    <section class="section" id="fit">
+      <div class="container split">
+        <div class="text-col">
+          <div class="eyebrow" data-num="002" data-reveal><i></i><span data-i18n="fit.label">Is it for you</span></div>
+          <h2 class="h2" data-reveal data-i18n="fit.title"><span class="muted">If this sounds like you,</span> we should
+            meet:</h2>
+          <ul class="fit-list">
+            <li data-reveal data-i18n="fit.1">You need a sitter for a weekend, a week or a month</li>
+            <li data-reveal data-i18n="fit.2">Your dog gets anxious when left alone. Don't worry, there are two of us,
+              so we can accommodate this and make sure your dog is never left alone with us.</li>
+            <li data-reveal data-i18n="fit.3">You want a trustworthy sitter who always keeps in touch while you're
+              away</li>
+            <li data-reveal data-i18n="fit.4">Your dog needs special care (medication, puppy care, etc.), we've got
+              you.</li>
+          </ul>
+        </div>
+        <aside class="aside--left">
+          <figure class="fit-photo" data-reveal>
+            <img src="assets/img/vizsla-sleeping-on-sofa.jpg" width="800" height="1000" loading="lazy" decoding="async"
+              alt="A vizsla curled up asleep on the sofa" data-i18n-attr="alt:alt.vizslaSofa">
+          </figure>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         003 — HOW A STAY GOES
+         ===================================================================== -->
+    <section class="section" id="stay">
+      <div class="container">
+        <div class="text-col">
+          <div class="eyebrow" data-num="003" data-reveal><i></i><span data-i18n="stay.label">How it works</span></div>
+          <h2 class="h2" data-reveal data-i18n="stay.title">How a stay goes<span>from one night to several
+              weeks</span></h2>
+
+          <div class="phase" data-reveal>
+            <span class="phase-label" data-i18n="stay.beforeLabel">Before the stay</span>
+            <p data-i18n="stay.beforeText">Every dog is different, so we always get to know each other first and talk
+              through all the details. With the owner's agreement, we can also include mini training sessions, games
+              and bonding work during the stay. This helps reduce stress, keeps the dog's usual routine going, and
+              makes their stay not only comfortable but fun too.</p>
+          </div>
+
+          <div class="phase" data-reveal>
+            <span class="phase-label" data-i18n="stay.duringLabel">During the stay</span>
+            <p data-i18n="stay.duringText">We're in touch with you every day, sending photo and video reports so you
+              don't miss your family member too much.</p>
+          </div>
+        </div>
+
+        <ul class="stay-photos">
+          <li data-reveal style="--i:0">
+            <figure>
+              <img src="assets/img/walk-by-the-sea.jpg" width="800" height="1000" loading="lazy" decoding="async"
+                alt="Maxim on a seaside viewpoint with a black-and-white dog" data-i18n-attr="alt:alt.walkSea">
+              <figcaption data-i18n="cap.coast">Walks along the coast</figcaption>
+            </figure>
+          </li>
+          <li data-reveal style="--i:1">
+            <figure>
+              <img src="assets/img/sofa-nap-belly-up.jpg" width="800" height="1000" loading="lazy" decoding="async"
+                alt="A white-and-brown dog napping belly-up on the sofa" data-i18n-attr="alt:alt.sofaNap">
+              <figcaption data-i18n="cap.sofa">Sofa naps are allowed</figcaption>
+            </figure>
+          </li>
+          <li data-reveal style="--i:2">
+            <figure>
+              <img src="assets/img/seaside-cliff-merle-dog.jpg" width="800" height="1000" loading="lazy"
+                decoding="async" alt="A merle dog sitting on a rocky coast at sunset" data-i18n-attr="alt:alt.cliff">
+              <figcaption data-i18n="cap.sunset">Golden hour by the sea</figcaption>
+            </figure>
+          </li>
+          <li data-reveal style="--i:3">
+            <figure>
+              <img src="assets/img/balcony-lookout.jpg" width="800" height="1000" loading="lazy" decoding="async"
+                alt="A dog looking out from the balcony" data-i18n-attr="alt:alt.balcony">
+              <figcaption data-i18n="cap.balcony">Fresh air on the balcony</figcaption>
+            </figure>
+          </li>
+        </ul>
+
+        <div class="text-col">
+          <div class="phase" data-reveal>
+            <span class="phase-label" data-i18n="stay.afterLabel">At pick-up</span>
+            <p data-i18n="stay.afterText">You get a happy and relaxed dog, sometimes even with a new toy to take home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         004 — OUR GUESTS (lanyard rail with flip badges)
+         Each badge: --strap colour, --len strap length, data-tilt rest angle (rad).
+         Breed / caption / month are on the front; the back shows the full photo.
+         ===================================================================== -->
+    <section class="section" id="guests">
+      <div class="container">
+        <div class="guests-head">
+          <div class="eyebrow" data-num="004" data-reveal><i></i><span data-i18n="guests.label">Our guests · eight of
+              them</span></div>
+          <h2 class="h2" data-reveal data-i18n="guests.title">Some of our recent guests.<span>Go on, they love
+              attention.</span></h2>
+        </div>
+      </div>
+
+      <div class="rail-scroller">
+        <div class="rail-stage" id="rail">
+          <div class="rail" aria-hidden="true"></div>
+          <ul class="lanyards">
+
+            <!-- 1 · Kiko · Cocker Spaniel -->
+            <li class="lanyard" style="--strap: var(--terracotta); --len: 118px" data-tilt="-0.02">
+              <div class="swing">
+                <span class="loop" aria-hidden="true"></span>
+                <div class="strap"></div>
+                <div class="hang">
+                  <div class="ring" aria-hidden="true"></div>
+                  <div class="clip" aria-hidden="true"></div>
+                  <button class="badge" type="button" aria-pressed="false">
+                    <span class="badge-inner">
+                      <span class="face front">
+                        <span class="band"><span class="slot"></span></span>
+                        <img class="avatar" src="assets/img/badge-cocker-spaniel.jpg" width="360" height="360"
+                          loading="lazy" alt="Cocker spaniel" data-i18n-attr="alt:breed.cocker">
+                        <span class="b-name">Kiko</span>
+                        <span class="b-breed" data-i18n="breed.cocker">Cocker Spaniel</span>
+                        <span class="b-role" data-i18n="role.cocker">Professional smiler</span>
+                        <span class="b-dept"><span data-i18n="badge.guest">Guest</span> · <span data-month="2025-06">Jun
+                            2025</span></span>
+                      </span>
+                      <span class="face back">
+                        <img src="assets/img/badge-cocker-spaniel-back.jpg" width="480" height="640" loading="lazy"
+                          alt="">
+                        <span class="back-text"><strong>Kiko</strong><span data-i18n="breed.cocker">Cocker Spaniel</span><span
+                            data-month="2025-06" data-month-style="long">June 2025</span></span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <!-- 2 · Iggy · Greyhound -->
+            <li class="lanyard" style="--strap: var(--sage); --len: 140px" data-tilt="0.015">
+              <div class="swing">
+                <span class="loop" aria-hidden="true"></span>
+                <div class="strap"></div>
+                <div class="hang">
+                  <div class="ring" aria-hidden="true"></div>
+                  <div class="clip" aria-hidden="true"></div>
+                  <button class="badge" type="button" aria-pressed="false">
+                    <span class="badge-inner">
+                      <span class="face front">
+                        <span class="band"><span class="slot"></span></span>
+                        <img class="avatar" src="assets/img/badge-italian-greyhound.jpg" width="360" height="360"
+                          loading="lazy" alt="Greyhound" data-i18n-attr="alt:breed.greyhound">
+                        <span class="b-name">Iggy</span>
+                        <span class="b-breed" data-i18n="breed.greyhound">Greyhound</span>
+                        <span class="b-role" data-i18n="role.greyhound">Blanket burrito</span>
+                        <span class="b-dept"><span data-i18n="badge.guest">Guest</span> · <span data-month="2025-05">May
+                            2025</span></span>
+                      </span>
+                      <span class="face back">
+                        <img src="assets/img/badge-italian-greyhound-back.jpg" width="480" height="640" loading="lazy"
+                          alt="">
+                        <span class="back-text"><strong>Iggy</strong><span data-i18n="breed.greyhound">Greyhound</span><span
+                            data-month="2025-05" data-month-style="long">May 2025</span></span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <!-- 3 · Keiko · Shiba Inu -->
+            <li class="lanyard" style="--strap: var(--navy); --len: 104px" data-tilt="-0.01">
+              <div class="swing">
+                <span class="loop" aria-hidden="true"></span>
+                <div class="strap"></div>
+                <div class="hang">
+                  <div class="ring" aria-hidden="true"></div>
+                  <div class="clip" aria-hidden="true"></div>
+                  <button class="badge" type="button" aria-pressed="false">
+                    <span class="badge-inner">
+                      <span class="face front">
+                        <span class="band"><span class="slot"></span></span>
+                        <img class="avatar" src="assets/img/badge-shiba-inu.jpg" width="360" height="360" loading="lazy"
+                          alt="Shiba Inu" data-i18n-attr="alt:breed.shiba">
+                        <span class="b-name">Keiko</span>
+                        <span class="b-breed" data-i18n="breed.shiba">Shiba Inu</span>
+                        <span class="b-role" data-i18n="role.shiba">Street-style model</span>
+                        <span class="b-dept"><span data-i18n="badge.guest">Guest</span> · <span data-month="2026-06">Jun
+                            2026</span></span>
+                      </span>
+                      <span class="face back">
+                        <img src="assets/img/badge-shiba-inu-back.jpg" width="480" height="640" loading="lazy" alt="">
+                        <span class="back-text"><strong>Keiko</strong><span data-i18n="breed.shiba">Shiba Inu</span><span
+                            data-month="2026-06" data-month-style="long">June 2026</span></span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <!-- 4 · Leon · Pomeranian -->
+            <li class="lanyard" style="--strap: var(--mustard); --len: 132px" data-tilt="0.02">
+              <div class="swing">
+                <span class="loop" aria-hidden="true"></span>
+                <div class="strap"></div>
+                <div class="hang">
+                  <div class="ring" aria-hidden="true"></div>
+                  <div class="clip" aria-hidden="true"></div>
+                  <button class="badge" type="button" aria-pressed="false">
+                    <span class="badge-inner">
+                      <span class="face front">
+                        <span class="band"><span class="slot"></span></span>
+                        <img class="avatar" src="assets/img/badge-pomeranian.jpg" width="360" height="360"
+                          loading="lazy" alt="Pomeranian" data-i18n-attr="alt:breed.pom">
+                        <span class="b-name">Leon</span>
+                        <span class="b-breed" data-i18n="breed.pom">Pomeranian</span>
+                        <span class="b-role" data-i18n="role.pom">Full-time cuddler</span>
+                        <span class="b-dept"><span data-i18n="badge.guest">Guest</span> · <span data-month="2025-08">Aug
+                            2025</span></span>
+                      </span>
+                      <span class="face back">
+                        <img src="assets/img/badge-pomeranian-back.jpg" width="480" height="640" loading="lazy" alt="">
+                        <span class="back-text"><strong>Leon</strong><span data-i18n="breed.pom">Pomeranian</span><span
+                            data-month="2025-08" data-month-style="long">August 2025</span></span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <!-- 5 · Uma · Jack Russell -->
+            <li class="lanyard" style="--strap: var(--terracotta); --len: 150px" data-tilt="-0.015">
+              <div class="swing">
+                <span class="loop" aria-hidden="true"></span>
+                <div class="strap"></div>
+                <div class="hang">
+                  <div class="ring" aria-hidden="true"></div>
+                  <div class="clip" aria-hidden="true"></div>
+                  <button class="badge" type="button" aria-pressed="false">
+                    <span class="badge-inner">
+                      <span class="face front">
+                        <span class="band"><span class="slot"></span></span>
+                        <img class="avatar" src="assets/img/badge-jack-russell.jpg" width="360" height="360"
+                          loading="lazy" alt="Jack Russell terrier" data-i18n-attr="alt:breed.jrt">
+                        <span class="b-name">Uma</span>
+                        <span class="b-breed" data-i18n="breed.jrt">Jack Russell</span>
+                        <span class="b-role" data-i18n="role.jrt">Work-from-home supervisor</span>
+                        <span class="b-dept"><span data-i18n="badge.guest">Guest</span> · <span data-month="2026-08">Aug
+                            2026</span></span>
+                      </span>
+                      <span class="face back">
+                        <img src="assets/img/badge-jack-russell-back.jpg" width="480" height="640" loading="lazy"
+                          alt="">
+                        <span class="back-text"><strong>Uma</strong><span data-i18n="breed.jrt">Jack Russell</span><span
+                            data-month="2026-08" data-month-style="long">August 2026</span></span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <!-- 6 · Juni · Border Collie -->
+            <li class="lanyard" style="--strap: var(--sage); --len: 112px" data-tilt="0.01">
+              <div class="swing">
+                <span class="loop" aria-hidden="true"></span>
+                <div class="strap"></div>
+                <div class="hang">
+                  <div class="ring" aria-hidden="true"></div>
+                  <div class="clip" aria-hidden="true"></div>
+                  <button class="badge" type="button" aria-pressed="false">
+                    <span class="badge-inner">
+                      <span class="face front">
+                        <span class="band"><span class="slot"></span></span>
+                        <img class="avatar" src="assets/img/badge-border-collie.jpg" width="360" height="360"
+                          loading="lazy" alt="Border collie" data-i18n-attr="alt:breed.collie">
+                        <span class="b-name">Juni</span>
+                        <span class="b-breed" data-i18n="breed.collie">Border Collie</span>
+                        <span class="b-role" data-i18n="role.collie">Rope-toy champion</span>
+                        <span class="b-dept"><span data-i18n="badge.guest">Guest</span> · <span data-month="2026-09">Sep
+                            2026</span></span>
+                      </span>
+                      <span class="face back">
+                        <img src="assets/img/badge-border-collie-back.jpg" width="480" height="640" loading="lazy"
+                          alt="">
+                        <span class="back-text"><strong>Juni</strong><span data-i18n="breed.collie">Border Collie</span><span
+                            data-month="2026-09" data-month-style="long">September 2026</span></span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <!-- 7 · Tori · Vizsla -->
+            <li class="lanyard" style="--strap: var(--navy); --len: 128px" data-tilt="-0.02">
+              <div class="swing">
+                <span class="loop" aria-hidden="true"></span>
+                <div class="strap"></div>
+                <div class="hang">
+                  <div class="ring" aria-hidden="true"></div>
+                  <div class="clip" aria-hidden="true"></div>
+                  <button class="badge" type="button" aria-pressed="false">
+                    <span class="badge-inner">
+                      <span class="face front">
+                        <span class="band"><span class="slot"></span></span>
+                        <img class="avatar" src="assets/img/badge-vizsla.jpg" width="360" height="360" loading="lazy"
+                          alt="Vizsla" data-i18n-attr="alt:breed.vizsla">
+                        <span class="b-name">Tori</span>
+                        <span class="b-breed" data-i18n="breed.vizsla">Vizsla</span>
+                        <span class="b-role" data-i18n="role.vizsla">Sofa connoisseur</span>
+                        <span class="b-dept"><span data-i18n="badge.guest">Guest</span> · <span data-month="2026-10">Oct
+                            2026</span></span>
+                      </span>
+                      <span class="face back">
+                        <img src="assets/img/badge-vizsla-back.jpg" width="480" height="640" loading="lazy" alt="">
+                        <span class="back-text"><strong>Tori</strong><span data-i18n="breed.vizsla">Vizsla</span><span
+                            data-month="2026-10" data-month-style="long">October 2026</span></span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            <!-- 8 · Ice · White Shepherd -->
+            <li class="lanyard" style="--strap: var(--mustard); --len: 120px" data-tilt="0.012">
+              <div class="swing">
+                <span class="loop" aria-hidden="true"></span>
+                <div class="strap"></div>
+                <div class="hang">
+                  <div class="ring" aria-hidden="true"></div>
+                  <div class="clip" aria-hidden="true"></div>
+                  <button class="badge" type="button" aria-pressed="false">
+                    <span class="badge-inner">
+                      <span class="face front">
+                        <span class="band"><span class="slot"></span></span>
+                        <img class="avatar" src="assets/img/badge-white-shepherd.jpg" width="360" height="360"
+                          loading="lazy" alt="White shepherd" data-i18n-attr="alt:breed.shepherd">
+                        <span class="b-name">Ice</span>
+                        <span class="b-breed" data-i18n="breed.shepherd">White Shepherd</span>
+                        <span class="b-role" data-i18n="role.shepherd">Park regular</span>
+                        <span class="b-dept"><span data-i18n="badge.guest">Guest</span> · <span data-month="2026-07">Jul
+                            2026</span></span>
+                      </span>
+                      <span class="face back">
+                        <img src="assets/img/badge-white-shepherd-back.jpg" width="480" height="640" loading="lazy"
+                          alt="">
+                        <span class="back-text"><strong>Ice</strong><span data-i18n="breed.shepherd">White Shepherd</span><span
+                            data-month="2026-07" data-month-style="long">July 2026</span></span>
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="rail-foot">
+          <p class="rail-hint">
+            <span class="hint-fine" data-i18n="guests.hint">Brush along the rail to say hi, pull a badge down, click to
+              flip it.</span>
+            <span class="hint-touch" data-i18n="guests.hintTouch">Swipe along the rail and tap a badge to flip
+              it.</span>
+          </p>
+          <a class="btn btn--dark rail-cta" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M16 3v4M8 3v4M3 10h18" />
+            </svg>
+            <span data-i18n="guests.cta">Book your dog's stay</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         005 — REVIEWS
+         Each review: data-orig = language of the original text.
+         Paragraph with data-l="xx" = that language's version (original + translations).
+         ===================================================================== -->
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="text-col">
+          <div class="eyebrow" data-num="005" data-reveal><i></i><span data-i18n="reviews.label">Reviews</span></div>
+          <h2 class="h2" data-reveal data-i18n="reviews.title">What owners say<span>after the stay</span></h2>
+
+          <div class="reviews">
+
+            <article class="review" data-orig="es" data-reveal>
+              <span class="review-avatar" aria-hidden="true">T</span>
+              <header class="review-head"><span class="review-name">Thomas L.</span><time datetime="2026-02-24"
+                  data-fmt="day">24 February 2026</time></header>
+              <span class="review-verified" data-i18n="reviews.verified">Verified stay</span>
+              <blockquote class="review-text">
+                <p data-l="es" lang="es">Nuestra perra Lola ha pasado una estancia perfecta con Anastasia y Maxim! Son
+                  una pareja muy atenta y le dan mucho cariño a las mascotas.</p>
+                <p data-l="en" lang="en" hidden>Our dog Lola had a perfect stay with Anastasia and Maxim! They're a very
+                  attentive couple and give pets lots of love.</p>
+                <p data-l="ru" lang="ru" hidden>Наша собака Лола прекрасно провела время у Анастасии и Максима! Очень
+                  внимательная пара, они дарят питомцам много любви.</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="en" data-reveal>
+              <span class="review-avatar" aria-hidden="true">H</span>
+              <header class="review-head"><span class="review-name">Heiner L.</span><time datetime="2025-12-28"
+                  data-fmt="day">28 December 2025</time></header>
+              <span class="review-verified" data-i18n="reviews.verified">Verified stay</span>
+              <blockquote class="review-text">
+                <p data-l="en" lang="en">Perfect experience, nothing to improve I could think of.</p>
+                <p data-l="es" lang="es" hidden>Una experiencia perfecta: no se me ocurre nada que mejorar.</p>
+                <p data-l="ru" lang="ru" hidden>Идеальный опыт. Даже не знаю, что можно было бы улучшить.</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="es" data-reveal>
+              <span class="review-avatar" aria-hidden="true">A</span>
+              <header class="review-head"><span class="review-name">adrian n.</span><time datetime="2025-12-28"
+                  data-fmt="day">28 December 2025</time></header>
+              <span class="review-verified" data-i18n="reviews.verified">Verified stay</span>
+              <blockquote class="review-text">
+                <p data-l="es" lang="es">Primero pedir disculpas por la tardanza en la reseña. Anastasia y su pareja se
+                  portaron genial con kiara, estuvo una semana completa con ellos, y sin palabras. Muy atentos los dos,
+                  tienen un piso bastante apto para la mascota, e incluso le dieron un peluche de regalo. Sin duda
+                  repetiré. Muchas gracias :D</p>
+                <p data-l="en" lang="en" hidden>First of all, sorry for the late review. Anastasia and her partner were
+                  wonderful with Kiara. She spent a whole week with them, and I'm lost for words. Both are very
+                  attentive, their flat is well suited for pets, and they even gave her a plush toy as a gift. I'll
+                  definitely be back. Thank you so much :D</p>
+                <p data-l="ru" lang="ru" hidden>Сначала извините за поздний отзыв. Анастасия и её партнёр отлично
+                  позаботились о Киаре. Она провела у них целую неделю, и у меня просто нет слов. Оба очень
+                  внимательные, квартира хорошо подходит для питомца, а ещё они подарили ей плюшевую игрушку.
+                  Обязательно обращусь снова. Большое спасибо :D</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="es" data-reveal>
+              <span class="review-avatar" aria-hidden="true">C</span>
+              <header class="review-head"><span class="review-name">Carles F.</span><time datetime="2025-08-27"
+                  data-fmt="day">27 August 2025</time></header>
+              <span class="review-verified" data-i18n="reviews.verified">Verified stay</span>
+              <blockquote class="review-text">
+                <p data-l="es" lang="es">Muy bien todo, muy amables y atentos con los perros. Perfecto</p>
+                <p data-l="en" lang="en" hidden>Everything went really well, very kind and attentive with the dogs.
+                  Perfect.</p>
+                <p data-l="ru" lang="ru" hidden>Всё отлично, очень добрые и внимательные к собакам. Идеально.</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="es" data-reveal>
+              <span class="review-avatar" aria-hidden="true">T</span>
+              <header class="review-head"><span class="review-name">Teresa S.</span><time datetime="2025-04-13"
+                  data-fmt="day">13 April 2025</time></header>
+              <span class="review-verified" data-i18n="reviews.verified">Verified stay</span>
+              <blockquote class="review-text">
+                <p data-l="es" lang="es">Estoy muy contenta de como ha ido, la acogida de Taka (mi perrita), el cuidado
+                  y la comunicación ha sido genial. Han sido muy atentos y cariñosos con ella. Recomiendo a Anastasia y
+                  Max como cuidadores y seguro que contaré con ellos en más ocasiones.</p>
+                <p data-l="en" lang="en" hidden>I'm very happy with how it went. The welcome Taka (my little dog) got,
+                  the care and the communication were great. They were very attentive and loving with her. I recommend
+                  Anastasia and Max as sitters, and I'll certainly count on them again.</p>
+                <p data-l="ru" lang="ru" hidden>Я очень довольна. Таку (мою собачку) прекрасно приняли, а уход и общение
+                  были замечательными. Они были очень внимательны и ласковы с ней. Рекомендую Анастасию и Макса и
+                  обязательно обращусь к ним ещё.</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="es" data-reveal>
+              <span class="review-avatar" aria-hidden="true">M</span>
+              <header class="review-head"><span class="review-name">Mar d.</span><time datetime="2025-01-19"
+                  data-fmt="day">19 January 2025</time></header>
+              <span class="review-verified" data-i18n="reviews.verified">Verified stay</span>
+              <blockquote class="review-text">
+                <p data-l="es" lang="es">Super amables y han cuidado de Bellamy súper bien! Seguro que volveré a confiar
+                  en ellos para cuidar de mi perro <span class="heart" aria-hidden="true">&#10084;&#xFE0E;</span></p>
+                <p data-l="en" lang="en" hidden>Super kind, and they took great care of Bellamy! I'll definitely trust
+                  them with my dog again <span class="heart" aria-hidden="true">&#10084;&#xFE0E;</span></p>
+                <p data-l="ru" lang="ru" hidden>Очень милые и прекрасно позаботились о Беллами! Обязательно снова доверю
+                  им свою собаку <span class="heart" aria-hidden="true">&#10084;&#xFE0E;</span></p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="es" data-reveal>
+              <span class="review-avatar" aria-hidden="true">A</span>
+              <header class="review-head"><span class="review-name">Anna F.</span><time datetime="2024-05-30"
+                  data-fmt="day">30 May 2024</time></header>
+              <span class="review-verified" data-i18n="reviews.verified">Verified stay</span>
+              <blockquote class="review-text">
+                <p data-l="es" lang="es">Muchas gracias por cuidar a Mara! Lo habéis puesto muy fácil y Mara ha estado
+                  muy bien cuidada. Hasta pronto!</p>
+                <p data-l="en" lang="en" hidden>Thank you so much for looking after Mara! You made it very easy, and
+                  Mara was very well cared for. See you soon!</p>
+                <p data-l="ru" lang="ru" hidden>Огромное спасибо, что присмотрели за Марой! Вы всё сделали очень просто,
+                  и о Маре прекрасно заботились. До скорого!</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="fr" data-reveal>
+              <span class="review-avatar" aria-hidden="true">G</span>
+              <header class="review-head"><span class="review-name">Georges-eric G.</span><time datetime="2024-04-07"
+                  data-fmt="day">7 April 2024</time></header>
+              <span class="review-verified" data-i18n="reviews.verified">Verified stay</span>
+              <blockquote class="review-text">
+                <p data-l="fr" lang="fr" hidden>Tout s’est bien passé avec Anastasia. Mon chien était tres content de
+                  son séjour</p>
+                <p data-l="en" lang="en">Everything went well with Anastasia. My dog was very happy with his stay.</p>
+                <p data-l="es" lang="es" hidden>Todo fue bien con Anastasia. Mi perro quedó muy contento con su
+                  estancia.</p>
+                <p data-l="ru" lang="ru" hidden>С Анастасией всё прошло хорошо. Моя собака была очень довольна
+                  пребыванием.</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="en" data-reveal>
+              <span class="review-avatar" aria-hidden="true">F</span>
+              <header class="review-head"><span class="review-name">Filipp L.</span><time datetime="2024-02-29"
+                  data-fmt="day">29 February 2024</time></header>
+              <blockquote class="review-text">
+                <p data-l="en" lang="en">Anastasia is a pet lover who will take care of your loved ones. She will look
+                  after your pet with all due responsibility so you can enjoy your free time.</p>
+                <p data-l="es" lang="es" hidden>Anastasia es una amante de los animales que cuidará de tus seres
+                  queridos. Cuidará de tu mascota con toda la responsabilidad para que puedas disfrutar de tu tiempo
+                  libre.</p>
+                <p data-l="ru" lang="ru" hidden>Анастасия по-настоящему любит животных и позаботится о ваших
+                  любимцах. Она присмотрит за питомцем со всей ответственностью, чтобы вы могли спокойно отдыхать.</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+            <article class="review" data-orig="en" data-reveal>
+              <span class="review-avatar" aria-hidden="true">M</span>
+              <header class="review-head"><span class="review-name">Margarita B.</span><time datetime="2024-02-28"
+                  data-fmt="day">28 February 2024</time></header>
+              <blockquote class="review-text">
+                <p data-l="en" lang="en">The best pet sitter! I went away for a week and asked her to sit with my
+                  malinois. Returned to happy, cheerful pup! 10 out of 10, gonna call her again next time.</p>
+                <p data-l="es" lang="es" hidden>¡La mejor cuidadora! Me fui una semana y le pedí que cuidara de mi
+                  malinois. ¡Volví y me encontré un perro feliz y alegre! Un 10 de 10, la volveré a llamar la próxima
+                  vez.</p>
+                <p data-l="ru" lang="ru" hidden>Лучший догситтер! Я уехала на неделю и попросила её посидеть с моим
+                  малинуа. Вернулась, а пёс счастливый и весёлый! 10 из 10, в следующий раз снова обращусь к ней.</p>
+              </blockquote>
+              <p class="review-note" hidden><span class="review-note-text"></span> <button type="button"
+                  class="review-toggle"></button></p>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         006 — CONTACT / CTA
+         ===================================================================== -->
+    <section class="section cta" id="contact">
+      <div class="container">
+        <div class="eyebrow" data-num="006" data-reveal><i></i><span data-i18n="cta.label">Book</span></div>
+        <h2 class="cta-title" data-reveal data-i18n="cta.title">We'll be glad<br><em>to host your dog!</em></h2>
+        <p class="cta-text" data-reveal data-i18n="cta.text">Drop us a message with your dates and a short description
+          of your dog, and we'll get back to you.</p>
+        <!-- Telegram contact: to change the account, edit both t.me links below -->
+        <div class="cta-actions" data-reveal>
+          <a class="btn btn--accent" href="https://t.me/stasialomex" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+              <path d="m21.854 2.147-10.94 10.939" />
+            </svg>
+            <span data-i18n="cta.tg">Message us on Telegram</span>
+          </a>
+          <a class="cta-handle" href="https://t.me/stasialomex" target="_blank" rel="noopener">@stasialomex</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       FOOTER
+       ===================================================================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span data-i18n="footer.copy">© 2026 Anastasia &amp; Maxim · Home dog sitting</span>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+
+      /* ===================================================================
+         SETTINGS
+         =================================================================== */
+      const LANGS = ['en', 'es', 'ru'];
+      const LOCALES = { en: 'en-GB', es: 'es-ES', ru: 'ru-RU' };
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (!finePointer) document.documentElement.classList.add('is-touch');
+
+      /* ===================================================================
+         TRANSLATIONS
+         English lives in the HTML itself. Spanish and Russian live here,
+         keyed by the element's data-i18n / data-i18n-attr key.
+         `en` below only holds strings that are generated by script.
+         =================================================================== */
+      const I18N = {
+        en: {
+          'reviews.translated': 'Translated from {lang}.',
+          'reviews.showOriginal': 'Show original',
+          'reviews.showTranslation': 'Show translation',
+          'badge.flip': 'Flip badge: {name}'
+        },
+
+        es: {
+          'meta.title': 'Anastasia y Maxim, cuidado de perros en casa',
+          'meta.desc': 'Tu perro se queda con una pareja cariñosa que trabaja desde casa: tres paseos al día, sofá permitido y la playa para perros al lado. Opiniones reales de dueños reales.',
+          'nav.skip': 'Ir al contenido',
+          'brand.name': 'Anastasia y Maxim',
+          'brand.tag': 'Cuidado de perros',
+          'nav.book': 'Reservar',
+
+          'hero.l1': 'Tu perro,',
+          'hero.l2': '<em>como</em> en casa',
+          'hero.by': 'Cuidado de perros en casa<br>con <strong>Anastasia y Maxim</strong>',
+          'alt.hero': 'Anastasia en el sofá junto a un cocker spaniel negro y fuego',
+          'alt.heroMax': 'Maxim abrazando a un perro merle peludo en el sofá',
+          'alt.couple': 'Anastasia y Maxim junto al mar',
+
+          'toc.aria': 'En esta página',
+          'toc.about': 'Sobre nosotros',
+          'toc.fit': '¿Es para tu perro?',
+          'toc.stay': 'Cómo es una estancia',
+          'toc.guests': 'Nuestros huéspedes',
+          'toc.reviews': 'Opiniones',
+          'toc.cta': 'Reservar una estancia',
+
+          'about.label': 'Sobre nosotros',
+          'about.title': 'Lo que más nos importa<span>es que cada perro se sienta tranquilo, cómodo y bien cuidado mientras su dueño está fuera.</span>',
+          'about.p1': '¡Hola! Somos Anastasia y Maxim, una pareja que adora a los animales de todas las razas y personalidades. Hemos cuidado de perritos pequeños y de razas grandes como el pastor belga, y cuidamos a cada mascota como si fuera nuestra, asegurándonos de que se sienta segura, feliz y como en casa.',
+          'about.p2': 'Somos jóvenes profesionales de IT y negocios que trabajamos desde casa, así que estamos ahí la mayor parte del día, con mucho tiempo para jugar, pasear y dar mimos.',
+          'about.p3': 'Antes de cada estancia quedamos contigo para conocernos y que nos cuentes tus instrucciones, preferencias y cualquier pequeño detalle, para que tu ausencia le afecte lo menos posible a tu peludo.',
+          'about.p4': 'Vivimos a una hora al sur de Barcelona, pero podemos ir en coche a Barcelona o a ciudades cercanas para recoger y llevar a tu perro.',
+          'fact.1': 'Trabajamos desde casa: tu perro tendrá compañía, atención y mimos todo el día.',
+          'fact.2': 'Tres paseos al día: por la mañana, al mediodía y por la tarde.',
+          'fact.3': 'Un piso apto para perros con balcón cerrado.',
+          'fact.4': 'Los perros pueden subir al sofá: la comodidad forma parte de la estancia.',
+          'fact.5': 'Vivimos cerca de la playa para perros y hay un pequeño parque justo frente a nuestro edificio.',
+          'fact.6': 'Experiencia con perros mayores, cachorros y perros que no se llevan muy bien con otros.',
+          'about.link': 'Escríbenos',
+          'alt.kiss': 'Un cocker spaniel dándole un beso a Anastasia',
+          'alt.maxShepherd': 'Maxim abrazando a un perro tipo pastor en el salón',
+          'alt.maxGreyhound': 'Maxim en el sofá con un galgo italiano',
+
+          'fit.label': '¿Es para ti?',
+          'fit.title': '<span class="muted">Si te reconoces aquí,</span> deberíamos conocernos:',
+          'fit.1': 'Necesitas a alguien que cuide de tu perro un fin de semana, una semana o un mes',
+          'fit.2': 'Tu perro se pone nervioso cuando se queda solo. Tranquilo: somos dos, así que podemos organizarnos para que tu perro nunca se quede solo con nosotros.',
+          'fit.3': 'Quieres un cuidador de confianza que siempre te mantenga al tanto mientras estás fuera',
+          'fit.4': 'Tu perro necesita cuidados especiales (medicación, cuidados de cachorro, etc.): cuenta con nosotros.',
+          'alt.vizslaSofa': 'Un braco húngaro dormido y acurrucado en el sofá',
+
+          'stay.label': 'Cómo funciona',
+          'stay.title': 'Cómo es una estancia<span>de una noche a varias semanas</span>',
+          'stay.beforeLabel': 'Antes de la estancia',
+          'stay.beforeText': 'Cada perro es diferente, así que siempre empezamos por conocernos y hablar de todos los detalles. Si el dueño está de acuerdo, también podemos incluir pequeñas sesiones de adiestramiento, juegos y ejercicios para crear vínculo durante la estancia. Así se reduce el estrés, se mantiene su rutina habitual y la estancia no solo es cómoda, sino también divertida.',
+          'stay.duringLabel': 'Durante la estancia',
+          'stay.duringText': 'Estamos en contacto contigo todos los días y te enviamos fotos y vídeos para que no eches demasiado de menos a ese miembro de la familia.',
+          'cap.coast': 'Paseos por la costa',
+          'cap.sofa': 'Siestas en el sofá permitidas',
+          'cap.sunset': 'Atardecer junto al mar',
+          'cap.balcony': 'Aire fresco en el balcón',
+          'alt.walkSea': 'Maxim en un mirador junto al mar con un perro blanco y negro',
+          'alt.sofaNap': 'Un perro blanco y marrón durmiendo panza arriba en el sofá',
+          'alt.cliff': 'Un perro merle sentado en la costa rocosa al atardecer',
+          'alt.balcony': 'Un perro mirando desde el balcón',
+          'stay.afterLabel': 'Al recogerlo',
+          'stay.afterText': 'Te llevas a un perro feliz y relajado, y a veces hasta con un juguete nuevo para casa.',
+
+          'guests.label': 'Nuestros huéspedes · ocho de ellos',
+          'guests.title': 'Algunos de nuestros últimos huéspedes.<span>Adelante: les encanta que les hagan caso.</span>',
+          'guests.hint': 'Pasa el cursor por la barra para saludar, tira de una tarjeta hacia abajo o haz clic para darle la vuelta.',
+          'guests.hintTouch': 'Desliza por la barra y toca una tarjeta para darle la vuelta.',
+          'guests.cta': 'Reserva la estancia de tu perro',
+          'badge.guest': 'Huésped',
+          'badge.flip': 'Dar la vuelta a la tarjeta: {name}',
+          'breed.cocker': 'Cocker spaniel',
+          'breed.greyhound': 'Galgo inglés',
+          'breed.shiba': 'Shiba inu',
+          'breed.pom': 'Pomerania',
+          'breed.jrt': 'Jack Russell',
+          'breed.collie': 'Border collie',
+          'breed.vizsla': 'Braco húngaro',
+          'breed.shepherd': 'Pastor blanco',
+          'role.cocker': 'Sonrisa profesional',
+          'role.greyhound': 'Burrito de manta',
+          'role.shiba': 'Modelo urbano',
+          'role.pom': 'Mimos a tiempo completo',
+          'role.jrt': 'Supervisor del teletrabajo',
+          'role.collie': 'Campeón de la cuerda',
+          'role.vizsla': 'Experto en sofás',
+          'role.shepherd': 'Habitual del parque',
+
+          'reviews.label': 'Opiniones',
+          'reviews.title': 'Lo que dicen los dueños<span>después de la estancia</span>',
+          'reviews.verified': 'Estancia verificada',
+          'reviews.translated': 'Traducido del {lang}.',
+          'reviews.showOriginal': 'Ver original',
+          'reviews.showTranslation': 'Ver traducción',
+
+          'cta.label': 'Reserva',
+          'cta.title': '¡Estaremos encantados<br><em>de cuidar a tu perro!</em>',
+          'cta.text': 'Escríbenos con tus fechas y una breve descripción de tu perro, y te responderemos.',
+          'cta.tg': 'Escríbenos por Telegram',
+          'footer.copy': '© 2026 Anastasia y Maxim · Cuidado de perros en casa'
+        },
+
+        ru: {
+          'meta.title': 'Анастасия и Максим, передержка собак дома',
+          'meta.desc': 'Ваша собака поживёт у заботливой пары, которая работает из дома: три прогулки в день, можно на диван, рядом пляж для собак. Настоящие отзывы владельцев.',
+          'nav.skip': 'Перейти к содержанию',
+          'brand.name': 'Анастасия и Максим',
+          'brand.tag': 'Передержка собак',
+          'nav.book': 'Забронировать',
+
+          'hero.l1': 'Ваша собака',
+          'hero.l2': '<em>как</em> дома',
+          'hero.by': 'Домашняя передержка собак<br>у <strong>Анастасии и Максима</strong>',
+          'alt.hero': 'Анастасия на диване рядом с чёрно-подпалым кокер-спаниелем',
+          'alt.heroMax': 'Максим обнимает пушистую мраморную собаку на диване',
+          'alt.couple': 'Анастасия и Максим у моря',
+
+          'toc.aria': 'На этой странице',
+          'toc.about': 'О нас',
+          'toc.fit': 'Подойдёт ли вашей собаке?',
+          'toc.stay': 'Как проходит передержка',
+          'toc.guests': 'Наши гости',
+          'toc.reviews': 'Отзывы',
+          'toc.cta': 'Забронировать передержку',
+
+          'about.label': 'О нас',
+          'about.title': 'Для нас главное,<span>чтобы каждая собака чувствовала себя спокойно, уютно и под заботой, пока хозяина нет рядом.</span>',
+          'about.p1': 'Привет! Мы Анастасия и Максим, пара, которая обожает животных любых пород и характеров. Мы заботились и о крохах, и о крупных породах вроде бельгийской овчарки. Мы относимся к каждому питомцу как к своему, чтобы ему было спокойно, радостно и уютно, как дома.',
+          'about.p2': 'Мы молодые специалисты в IT и бизнесе и работаем из дома, поэтому почти весь день рядом, и у нас много времени на игры, прогулки и спокойные обнимашки.',
+          'about.p3': 'Перед каждой передержкой мы встречаемся с вами, чтобы познакомиться и узнать все инструкции, пожелания и нюансы. Так ваш отъезд дастся вашему хвостику как можно легче.',
+          'about.p4': 'Мы живём в часе езды к югу от Барселоны, но можем на машине приехать в Барселону или соседние города, чтобы забрать и привезти вашу собаку.',
+          'fact.1': 'Мы работаем из дома. У собаки весь день будет компания, внимание и ласка.',
+          'fact.2': 'Три прогулки в день: утром, днём и вечером.',
+          'fact.3': 'Квартира, удобная для собак, с закрытым балконом.',
+          'fact.4': 'Собакам можно на диван. Комфорт входит в программу.',
+          'fact.5': 'Рядом пляж для собак, а прямо перед домом есть небольшой парк.',
+          'fact.6': 'Есть опыт с пожилыми собаками, щенками и собаками, которые не очень ладят с другими.',
+          'about.link': 'Написать нам',
+          'alt.kiss': 'Кокер-спаниель целует Анастасию',
+          'alt.maxShepherd': 'Максим обнимает собаку овчарочьего типа в гостиной',
+          'alt.maxGreyhound': 'Максим на диване с левреткой',
+
+          'fit.label': 'Кому подойдёт',
+          'fit.title': '<span class="muted">Если это про вас,</span> давайте знакомиться:',
+          'fit.1': 'Вам нужна передержка на выходные, неделю или месяц',
+          'fit.2': 'Ваша собака тревожится, когда остаётся одна. Не переживайте: нас двое, поэтому мы можем всё организовать так, чтобы у нас она никогда не оставалась одна.',
+          'fit.3': 'Вам нужен надёжный человек, который всегда будет на связи, пока вас нет',
+          'fit.4': 'Вашей собаке нужен особый уход (лекарства, уход за щенком и т. п.), мы обо всём позаботимся.',
+          'alt.vizslaSofa': 'Выжла спит, свернувшись клубком на диване',
+
+          'stay.label': 'Как это работает',
+          'stay.title': 'Как проходит передержка<span>от одной ночи до нескольких недель</span>',
+          'stay.beforeLabel': 'До передержки',
+          'stay.beforeText': 'Каждая собака особенная, поэтому мы всегда сначала знакомимся и обсуждаем все детали. По договорённости с хозяином можем добавить мини-тренировки, игры и занятия на контакт. Это снижает стресс, сохраняет привычный режим собаки и делает передержку не только комфортной, но и весёлой.',
+          'stay.duringLabel': 'Во время передержки',
+          'stay.duringText': 'Мы на связи с вами каждый день и присылаем фото- и видеоотчёты, чтобы вы не слишком скучали по своему любимцу.',
+          'cap.coast': 'Прогулки вдоль побережья',
+          'cap.sofa': 'Спать на диване разрешено',
+          'cap.sunset': 'Закат у моря',
+          'cap.balcony': 'Свежий воздух на балконе',
+          'alt.walkSea': 'Максим на смотровой площадке у моря с чёрно-белой собакой',
+          'alt.sofaNap': 'Бело-коричневая собака спит на диване кверху лапами',
+          'alt.cliff': 'Мраморная собака сидит на скалистом берегу на закате',
+          'alt.balcony': 'Собака смотрит с балкона',
+          'stay.afterLabel': 'Когда забираете',
+          'stay.afterText': 'Вы забираете счастливую и спокойную собаку, иногда даже с новой игрушкой.',
+
+          'guests.label': 'Наши гости · восемь из них',
+          'guests.title': 'Некоторые из наших недавних гостей.<span>Смелее, они обожают внимание.</span>',
+          'guests.hint': 'Проведите курсором вдоль перекладины, потяните бейдж вниз или кликните, чтобы его перевернуть.',
+          'guests.hintTouch': 'Листайте вдоль перекладины и нажмите на бейдж, чтобы его перевернуть.',
+          'guests.cta': 'Забронировать передержку',
+          'badge.guest': 'Гость',
+          'badge.flip': 'Перевернуть бейдж: {name}',
+          'breed.cocker': 'Кокер-спаниель',
+          'breed.greyhound': 'Грейхаунд',
+          'breed.shiba': 'Сиба-ину',
+          'breed.pom': 'Шпиц',
+          'breed.jrt': 'Джек-рассел',
+          'breed.collie': 'Бордер-колли',
+          'breed.vizsla': 'Венгерская выжла',
+          'breed.shepherd': 'Белая овчарка',
+          'role.cocker': 'Улыбается в кадр',
+          'role.greyhound': 'Буррито в пледе',
+          'role.shiba': 'Уличная фотомодель',
+          'role.pom': 'Обнимашки 24/7',
+          'role.jrt': 'Контролёр удалёнки',
+          'role.collie': 'Чемпион по канату',
+          'role.vizsla': 'Ценитель дивана',
+          'role.shepherd': 'Завсегдатай парка',
+
+          'reviews.label': 'Отзывы',
+          'reviews.title': 'Что говорят хозяева<span>после передержки</span>',
+          'reviews.verified': 'Подтверждённая передержка',
+          'reviews.translated': 'Перевод с {lang}.',
+          'reviews.showOriginal': 'Показать оригинал',
+          'reviews.showTranslation': 'Показать перевод',
+
+          'cta.label': 'Бронирование',
+          'cta.title': 'Будем рады<br><em>принять вашу собаку!</em>',
+          'cta.text': 'Напишите нам даты и пару слов о вашей собаке, и мы с вами свяжемся.',
+          'cta.tg': 'Написать нам в Telegram',
+          'footer.copy': '© 2026 Анастасия и Максим · Домашняя передержка собак'
+        }
+      };
+
+      // Language names used in "Translated from …" (grammatical form per UI language)
+      const LANG_NAMES = {
+        en: { en: 'English', es: 'Spanish', fr: 'French' },
+        es: { en: 'inglés', es: 'español', fr: 'francés' },
+        ru: { en: 'английского', es: 'испанского', fr: 'французского' }
+      };
+
+      /* ---- capture English from the HTML ---- */
+      const EN = {};
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const k = el.dataset.i18n;
+        if (!(k in EN)) EN[k] = el.innerHTML;
+      });
+      const attrTargets = [...document.querySelectorAll('[data-i18n-attr]')].map((el) => ({
+        el,
+        pairs: el.dataset.i18nAttr.split(';').map((p) => p.split(':'))
+      }));
+      attrTargets.forEach(({ el, pairs }) => pairs.forEach(([attr, key]) => {
+        if (!(key in EN)) EN[key] = el.getAttribute(attr) || '';
+      }));
+
+      const t = (key, lang) => {
+        const dict = I18N[lang];
+        if (dict && key in dict) return dict[key];
+        if (key in EN) return EN[key];
+        return I18N.en[key] != null ? I18N.en[key] : '';
+      };
+
+      let currentLang = 'en';
+
+      function setLang(lang, persist) {
+        if (!LANGS.includes(lang)) lang = 'en';
+        currentLang = lang;
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const v = t(el.dataset.i18n, lang);
+          if (el.innerHTML !== v) el.innerHTML = v;
+        });
+        attrTargets.forEach(({ el, pairs }) => pairs.forEach(([attr, key]) => el.setAttribute(attr, t(key, lang))));
+        document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+
+        formatDates(lang);
+        updateReviews(lang);
+        updateBadgeLabels(lang);
+
+        if (persist) {
+          try { localStorage.setItem('am-lang', lang); } catch (e) { /* storage unavailable */ }
+          try {
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            history.replaceState(null, '', url);
+          } catch (e) { /* file:// or sandboxed */ }
+        }
+      }
+
+      function initialLang() {
+        try {
+          const q = new URLSearchParams(window.location.search).get('lang');
+          if (LANGS.includes(q)) return q;
+        } catch (e) { /* ignore */ }
+        try {
+          const saved = localStorage.getItem('am-lang');
+          if (LANGS.includes(saved)) return saved;
+        } catch (e) { /* ignore */ }
+        const nav = (navigator.languages || [navigator.language || 'en']).map((l) => String(l).slice(0, 2).toLowerCase());
+        return nav.find((l) => LANGS.includes(l)) || 'en';
+      }
+
+      /* ---- dates ---- */
+      function formatDates(lang) {
+        const loc = LOCALES[lang];
+        const dayFmt = new Intl.DateTimeFormat(loc, { day: 'numeric', month: 'long', year: 'numeric' });
+        document.querySelectorAll('time[data-fmt="day"]').forEach((el) => {
+          const [y, m, d] = el.getAttribute('datetime').split('-').map(Number);
+          el.textContent = dayFmt.format(new Date(y, m - 1, d, 12));
+        });
+        document.querySelectorAll('[data-month]').forEach((el) => {
+          const [y, m] = el.dataset.month.split('-').map(Number);
+          const style = el.dataset.monthStyle || 'short';
+          let name = new Intl.DateTimeFormat(loc, { month: style }).format(new Date(y, m - 1, 15)).replace('.', '');
+          if (style === 'long') name = name.charAt(0).toUpperCase() + name.slice(1);
+          el.textContent = name + ' ' + y;
+        });
+      }
+
+      /* ---- reviews: original vs translation ---- */
+      function renderReview(r, lang) {
+        const orig = r.dataset.orig;
+        const showOriginal = r.dataset.showOriginal === 'true';
+        const target = orig === lang || showOriginal ? orig : lang;
+        r.querySelectorAll('[data-l]').forEach((p) => { p.hidden = p.dataset.l !== target; });
+        const note = r.querySelector('.review-note');
+        if (!note) return;
+        if (orig === lang) { note.hidden = true; return; }
+        note.hidden = false;
+        note.querySelector('.review-note-text').textContent = showOriginal
+          ? ''
+          : t('reviews.translated', lang).replace('{lang}', LANG_NAMES[lang][orig] || orig);
+        note.querySelector('.review-toggle').textContent = t(showOriginal ? 'reviews.showTranslation' : 'reviews.showOriginal', lang);
+      }
+      function updateReviews(lang) {
+        document.querySelectorAll('.review').forEach((r) => renderReview(r, lang));
+      }
+      document.querySelectorAll('.review-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const r = btn.closest('.review');
+          r.dataset.showOriginal = r.dataset.showOriginal === 'true' ? 'false' : 'true';
+          renderReview(r, currentLang);
+        });
+      });
+
+      /* ---- accessible names for the flip badges ("Kiko, Cocker Spaniel") ---- */
+      function updateBadgeLabels(lang) {
+        document.querySelectorAll('.badge').forEach((b) => {
+          const name = b.querySelector('.b-name');
+          const breed = b.querySelector('.b-breed');
+          if (!name) return;
+          const label = name.textContent.trim() + (breed ? ', ' + breed.textContent.trim() : '');
+          b.setAttribute('aria-label', t('badge.flip', lang).replace('{name}', label));
+        });
+      }
+
+      document.querySelectorAll('[data-lang]').forEach((b) => {
+        b.addEventListener('click', () => setLang(b.dataset.lang, true));
+      });
+
+      /* ===================================================================
+         TOP BAR STATE + REVEALS + HERO ENTRANCE
+         =================================================================== */
+      const topbar = document.getElementById('topbar');
+      const onScroll = () => topbar.classList.toggle('is-scrolled', window.scrollY > 24);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+        document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+        // safety net: at the very bottom of the page (or if the page fits the screen) show everything
+        const revealRest = () => {
+          const doc = document.documentElement;
+          if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) {
+            document.querySelectorAll('[data-reveal]:not(.is-in)').forEach((el) => { el.classList.add('is-in'); io.unobserve(el); });
+          }
+        };
+        window.addEventListener('scroll', revealRest, { passive: true });
+        window.addEventListener('load', revealRest);
+      } else {
+        document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-in'));
+      }
+
+      // stagger items that share a list
+      document.querySelectorAll('.facts, .fit-list').forEach((list) => {
+        [...list.children].forEach((li, i) => li.style.setProperty('--i', i % 4));
+      });
+
+      requestAnimationFrame(() => document.body.classList.add('is-loaded'));
+
+      /* ===================================================================
+         LANYARD RAIL — spring physics (transforms only)
+         - brush the rail with the mouse to swing badges
+         - drag a badge down / sideways, it springs back
+         - click (or Enter / Space) flips a badge
+         =================================================================== */
+      const stage = document.getElementById('rail');
+      if (stage) {
+        const K_ANG = 38, C_ANG = 3.2;    // pendulum stiffness / damping
+        const K_PULL = 140, C_PULL = 9;   // vertical pull spring
+        const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+        const railY = () => parseFloat(getComputedStyle(stage).getPropertyValue('--rail-y')) || 30;
+
+        const items = [...stage.querySelectorAll('.lanyard')].map((li, i) => {
+          const it = {
+            li,
+            swing: li.querySelector('.swing'),
+            strap: li.querySelector('.strap'),
+            hang: li.querySelector('.hang'),
+            badge: li.querySelector('.badge'),
+            L: parseFloat(li.style.getPropertyValue('--len')) || 120,
+            rest: parseFloat(li.dataset.tilt || '0'),
+            th: 0, w: 0, s: 0, v: 0,
+            drag: null, moved: false
+          };
+          // entrance: start tilted, released when the rail scrolls into view
+          it.th = reduceMotion ? it.rest : it.rest + (i % 2 ? 1 : -1) * (0.22 + ((i * 37) % 10) / 100);
+          return it;
+        });
+
+        const render = (it) => {
+          it.swing.style.transform = 'rotate(' + it.th.toFixed(4) + 'rad)';
+          it.strap.style.transform = 'scaleY(' + ((it.L + it.s) / it.L).toFixed(4) + ')';
+          it.hang.style.transform = 'translate3d(0,' + it.s.toFixed(2) + 'px,0)';
+        };
+        items.forEach(render);
+
+        const flip = (it) => {
+          const on = it.badge.classList.toggle('is-flipped');
+          it.badge.setAttribute('aria-pressed', String(on));
+          if (!reduceMotion) { it.w += (it.th >= it.rest ? -1 : 1) * 0.7; wake(); }
+        };
+
+        let raf = 0; let last = 0; let visible = false;
+        function tick(now) {
+          const dt = Math.min(0.032, Math.max(0.001, (now - last) / 1000)); last = now;
+          let active = false;
+          for (const it of items) {
+            if (!it.drag) {
+              const a = -K_ANG * (it.th - it.rest) - C_ANG * it.w;
+              it.w += a * dt; it.th += it.w * dt;
+              const b = -K_PULL * it.s - C_PULL * it.v;
+              it.v += b * dt; it.s += it.v * dt;
+              if (Math.abs(it.w) < 0.002 && Math.abs(it.th - it.rest) < 0.0008 && Math.abs(it.v) < 0.05 && Math.abs(it.s) < 0.05) {
+                it.w = 0; it.th = it.rest; it.v = 0; it.s = 0;
+              } else {
+                active = true;
+              }
+            } else {
+              active = true;
+            }
+            render(it);
+          }
+          raf = active && visible ? requestAnimationFrame(tick) : 0;
+        }
+        function wake() {
+          if (!raf && visible && !reduceMotion) { last = performance.now(); raf = requestAnimationFrame(tick); }
+        }
+
+        // run physics only while the rail is on screen
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver((entries) => {
+            visible = entries[0].isIntersecting;
+            if (visible) wake();
+          }, { threshold: 0.15 }).observe(stage);
+        } else {
+          visible = true; wake();
+        }
+
+        items.forEach((it) => {
+          it.badge.addEventListener('click', (e) => {
+            if (it.moved) { it.moved = false; e.preventDefault(); return; }
+            flip(it);
+          });
+        });
+
+        if (!reduceMotion) {
+          // brush: mouse moving across a lanyard column nudges it
+          let lastX = null;
+          stage.addEventListener('pointermove', (e) => {
+            if (e.pointerType !== 'mouse') return;
+            const dx = lastX == null ? 0 : e.clientX - lastX;
+            lastX = e.clientX;
+            if (!dx) return;
+            const top = stage.getBoundingClientRect().top;
+            let hit = false;
+            for (const it of items) {
+              if (it.drag) continue;
+              const r = it.badge.getBoundingClientRect();
+              if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= top && e.clientY <= r.bottom) {
+                it.w = clamp(it.w - clamp(dx, -40, 40) * 0.02, -3, 3);
+                hit = true;
+              }
+            }
+            if (hit) wake();
+          });
+          stage.addEventListener('pointerleave', () => { lastX = null; });
+
+          // drag: pull a badge with the mouse / pen
+          const rubber = (x) => (x > 90 ? 90 + (x - 90) * 0.35 : x < -16 ? -16 + (x + 16) * 0.25 : x);
+          items.forEach((it) => {
+            it.badge.addEventListener('pointerdown', (e) => {
+              if (e.pointerType === 'touch' || e.button !== 0) return;
+              const lr = it.li.getBoundingClientRect();
+              const px = lr.left + lr.width / 2;
+              const py = lr.top + railY();
+              it.drag = {
+                id: e.pointerId, x0: e.clientX, y0: e.clientY, s0: it.s, th0: it.th,
+                a0: Math.atan2(e.clientX - px, e.clientY - py), px, py, hist: []
+              };
+              it.moved = false;
+              try { it.badge.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+              wake();
+            });
+            it.badge.addEventListener('pointermove', (e) => {
+              const d = it.drag;
+              if (!d || e.pointerId !== d.id) return;
+              const dx = e.clientX - d.x0, dy = e.clientY - d.y0;
+              if (Math.abs(dx) + Math.abs(dy) > 5) it.moved = true;
+              it.s = clamp(rubber(d.s0 + dy), -it.L * 0.5, 180);
+              const a = Math.atan2(e.clientX - d.px, e.clientY - d.py);
+              it.th = clamp(d.th0 - (a - d.a0), -1.1, 1.1);
+              const now = performance.now();
+              d.hist.push({ t: now, th: it.th, s: it.s });
+              while (d.hist.length > 2 && now - d.hist[0].t > 80) d.hist.shift();
+              render(it);
+            });
+            const end = (e) => {
+              const d = it.drag;
+              if (!d || e.pointerId !== d.id) return;
+              const h = d.hist;
+              if (h.length >= 2) {
+                const a = h[0], b = h[h.length - 1];
+                const dt = Math.max(0.016, (b.t - a.t) / 1000);
+                it.w = clamp((b.th - a.th) / dt, -6, 6);
+                it.v = clamp((b.s - a.s) / dt, -1500, 1500);
+              }
+              it.drag = null;
+              setTimeout(() => { it.moved = false; }, 0); // after the click that follows pointerup
+              wake();
+            };
+            it.badge.addEventListener('pointerup', end);
+            it.badge.addEventListener('pointercancel', end);
+            it.badge.addEventListener('lostpointercapture', end);
+          });
+        }
+      }
+
+      /* ===================================================================
+         START
+         =================================================================== */
+      setLang(initialLang(), false);
+    })();
+  </script>
+</body>
+
+</html>
