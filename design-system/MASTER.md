@@ -31,7 +31,7 @@ No gradients except material textures (metal rail, woven strap). No purple/pink.
 - UI/body: **Onest** 400/500/600 (Cyrillic + Latin-ext).
 - Hero: `clamp(56px, 9.6vw, 144px)`, line-height .9, tracking -0.02em.
 - H2: Onest 500 `clamp(28px, 3.6vw, 44px)`, line-height 1.08, tracking -0.025em; second line in `--muted`.
-- Body 16/1.65 `--ink-2`. Eyebrow 11px, uppercase, tracking .16em, `--muted-sm`.
+- Body 16/1.65 `--ink-2`. Eyebrow 11px, uppercase, tracking .16em, `--ink-2` (darkened from `--muted-sm` for readability, client request 2026-11-16).
 
 ## Spacing & layout
 - Gutter `clamp(16px, 4vw, 40px)`; section padding `clamp(96px, 13vw, 176px)` block.
