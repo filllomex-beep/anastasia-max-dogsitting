@@ -4,3 +4,4 @@ CLAUDE.md
 # OS / tooling
 .DS_Store
 .vercel
+.env*
