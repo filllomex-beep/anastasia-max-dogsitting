@@ -1026,7 +1026,8 @@
 
     .strap {
       width: 15px;
-      height: var(--len);
+      /* --len-m: shorter straps on narrow screens (see "wrapped rails" below) */
+      height: var(--len-m, var(--len));
       margin: 0 auto;
       transform-origin: 50% 0;
       will-change: transform;
@@ -1292,6 +1293,130 @@
 
     .rail-cta {
       margin-top: 28px;
+    }
+
+    /* ---------------------------------------------------------------------
+       Wrapped rails (< 1280px): the 8 badges no longer fit on one rail, so
+       instead of a sideways scroller they wrap into rows — 4 per rail on
+       tablets / small laptops, 2 per rail on phones. Each badge draws its
+       own piece of the rail, so every row reads as one continuous bar.
+       --------------------------------------------------------------------- */
+    @media (max-width: 1279px) {
+      .rail-scroller {
+        overflow: visible;
+      }
+
+      .rail-stage {
+        --cols: 4;
+        --slot: min(180px, calc((100vw - 2 * var(--gutter) - 24px) / var(--cols)));
+        --rail-y: 24px;
+        min-width: 0;
+        max-width: calc(var(--cols) * var(--slot) + 24px);
+        height: auto;
+        padding: 0 12px;
+      }
+
+      .rail {
+        display: none;
+      }
+
+      .lanyards {
+        display: grid;
+        grid-template-columns: repeat(var(--cols), var(--slot));
+        justify-content: center;
+      }
+
+      .lanyard {
+        --len-m: calc(var(--len) * .32);
+        height: calc(var(--rail-y) + 48px + 30px + var(--card-h) + 28px);
+      }
+
+      /* this badge's piece of the rail */
+      .lanyard::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(var(--rail-y) - 5px);
+        height: 10px;
+        z-index: 3;
+        background: linear-gradient(#f2f2f2 0%, #bdbdbd 35%, #8a8a8a 60%, #c9c9c9 100%);
+        box-shadow: 0 3px 6px -2px rgba(0, 0, 0, .35);
+      }
+
+      /* end caps on the first / last badge of each row */
+      .lanyard:nth-child(4n+1)::before {
+        left: -8px;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .lanyard:nth-child(4n)::before {
+        right: -8px;
+        border-radius: 0 5px 5px 0;
+      }
+
+      .lanyard:nth-child(4n+1)::after,
+      .lanyard:nth-child(4n)::after {
+        content: "";
+        position: absolute;
+        top: calc(var(--rail-y) - 14px);
+        width: 16px;
+        height: 28px;
+        z-index: 3;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #6f6f6f, #c8c8c8 40%, #7c7c7c);
+        box-shadow: 0 4px 8px -3px rgba(0, 0, 0, .4);
+      }
+
+      .lanyard:nth-child(4n+1)::after {
+        left: -12px;
+      }
+
+      .lanyard:nth-child(4n)::after {
+        right: -12px;
+      }
+    }
+
+    @media (max-width: 699px) {
+      .rail-stage {
+        --cols: 2;
+      }
+
+      /* 2 per row: badges 3 and 7 now start a row, 2 and 6 end one */
+      .lanyard:nth-child(2n+1)::before {
+        left: -8px;
+        right: 0;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .lanyard:nth-child(2n)::before {
+        left: 0;
+        right: -8px;
+        border-radius: 0 5px 5px 0;
+      }
+
+      .lanyard:nth-child(2n+1)::after,
+      .lanyard:nth-child(2n)::after {
+        content: "";
+        position: absolute;
+        top: calc(var(--rail-y) - 14px);
+        width: 16px;
+        height: 28px;
+        z-index: 3;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #6f6f6f, #c8c8c8 40%, #7c7c7c);
+        box-shadow: 0 4px 8px -3px rgba(0, 0, 0, .4);
+      }
+
+      .lanyard:nth-child(2n+1)::after {
+        left: -12px;
+        right: auto;
+      }
+
+      .lanyard:nth-child(2n)::after {
+        left: auto;
+        right: -12px;
+      }
     }
 
     /* =====================================================================
@@ -2025,8 +2150,7 @@
           <p class="rail-hint">
             <span class="hint-fine" data-i18n="guests.hint">Brush along the rail to say hi, pull a badge down, click to
               flip it.</span>
-            <span class="hint-touch" data-i18n="guests.hintTouch">Swipe along the rail and tap a badge to flip
-              it.</span>
+            <span class="hint-touch" data-i18n="guests.hintTouch">Tap a badge to flip it.</span>
           </p>
           <a class="btn btn--dark rail-cta" href="#contact">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -2367,7 +2491,7 @@
           'guests.label': 'Nuestros huéspedes · ocho de ellos',
           'guests.title': 'Algunos de nuestros últimos huéspedes.<span>Adelante: les encanta que les hagan caso.</span>',
           'guests.hint': 'Pasa el cursor por la barra para saludar, tira de una tarjeta hacia abajo o haz clic para darle la vuelta.',
-          'guests.hintTouch': 'Desliza por la barra y toca una tarjeta para darle la vuelta.',
+          'guests.hintTouch': 'Toca una tarjeta para darle la vuelta.',
           'guests.cta': 'Reserva la estancia de tu perro',
           'badge.guest': 'Huésped',
           'badge.flip': 'Dar la vuelta a la tarjeta: {name}',
@@ -2470,7 +2594,7 @@
           'guests.label': 'Наши гости · восемь из них',
           'guests.title': 'Некоторые из наших недавних гостей.<span>Смелее, они обожают внимание.</span>',
           'guests.hint': 'Проведите курсором вдоль перекладины, потяните бейдж вниз или кликните, чтобы его перевернуть.',
-          'guests.hintTouch': 'Листайте вдоль перекладины и нажмите на бейдж, чтобы его перевернуть.',
+          'guests.hintTouch': 'Нажмите на бейдж, чтобы его перевернуть.',
           'guests.cta': 'Забронировать передержку',
           'badge.guest': 'Гость',
           'badge.flip': 'Перевернуть бейдж: {name}',
@@ -2697,6 +2821,15 @@
           it.th = reduceMotion ? it.rest : it.rest + (i % 2 ? 1 : -1) * (0.22 + ((i * 37) % 10) / 100);
           return it;
         });
+
+        // strap length comes from CSS (shorter on narrow screens) — keep L in sync with layout
+        const measure = () => items.forEach((it) => { it.L = it.strap.offsetHeight || it.L; });
+        measure();
+        let resizeRaf = 0;
+        window.addEventListener('resize', () => {
+          cancelAnimationFrame(resizeRaf);
+          resizeRaf = requestAnimationFrame(measure);
+        }, { passive: true });
 
         const render = (it) => {
           it.swing.style.transform = 'rotate(' + it.th.toFixed(4) + 'rad)';
