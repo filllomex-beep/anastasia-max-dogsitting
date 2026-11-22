@@ -23,6 +23,8 @@ Small, personal, trusted. Two people, their flat, their walks. Calm and warm, ne
 | `--accent` | `#B4432E` | italic accent words, checks, reviewer names, CTA (5.7:1 on bg) |
 | `--accent-soft` | `#F2E1DA` | avatar circles, chip dots |
 | `--terracotta` `--sage` `--navy` `--mustard` | `#C4573F` `#6E8B76` `#2E4357` `#D4A343` | lanyard straps + badge bands only |
+| `--telegram` (`--telegram-hover`) | `#26A5E4` (`#1C96D3`) | Telegram button only, with `--ink` text (≥ 5.5:1) |
+| `--whatsapp` (`--whatsapp-hover`) | `#25D366` (`#1FBE5B`) | WhatsApp button only, with `--ink` text (≥ 7.5:1) |
 
 No gradients except material textures (metal rail, woven strap). No purple/pink.
 

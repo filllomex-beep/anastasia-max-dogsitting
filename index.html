@@ -42,6 +42,12 @@
       --accent: #B4432E;
       --accent-soft: #F2E1DA;
 
+      /* contact buttons: official brand colours (use dark text, white is unreadable on them) */
+      --telegram: #26A5E4;
+      --telegram-hover: #1C96D3;
+      --whatsapp: #25D366;
+      --whatsapp-hover: #1FBE5B;
+
       /* lanyard straps / badge bands */
       --terracotta: #C4573F;
       --sage: #6E8B76;
@@ -312,14 +318,22 @@
       background: #2a2826;
     }
 
-    .btn--accent {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 10px 24px -12px rgba(180, 67, 46, .7);
+    .btn--telegram {
+      background: var(--telegram);
+      color: var(--ink);
     }
 
-    .btn--accent:hover {
-      background: #9f3a27;
+    .btn--telegram:hover {
+      background: var(--telegram-hover);
+    }
+
+    .btn--whatsapp {
+      background: var(--whatsapp);
+      color: var(--ink);
+    }
+
+    .btn--whatsapp:hover {
+      background: var(--whatsapp-hover);
     }
 
     .btn--sm {
@@ -2406,7 +2420,7 @@
              search for 34654728032 (the links) and "654 72 80 32" (the visible number). -->
         <div class="cta-actions" data-reveal>
           <div class="cta-option">
-            <a class="btn btn--accent" href="https://t.me/stasialomex" target="_blank" rel="noopener">
+            <a class="btn btn--telegram" href="https://t.me/stasialomex" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                 stroke-linejoin="round" aria-hidden="true">
                 <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
@@ -2417,7 +2431,7 @@
             <a class="cta-handle" href="https://t.me/stasialomex" target="_blank" rel="noopener">@stasialomex</a>
           </div>
           <div class="cta-option">
-            <a class="btn btn--dark" href="https://wa.me/34654728032" target="_blank" rel="noopener">
+            <a class="btn btn--whatsapp" href="https://wa.me/34654728032" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                 stroke-linejoin="round" aria-hidden="true">
                 <path d="m3 21 1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
