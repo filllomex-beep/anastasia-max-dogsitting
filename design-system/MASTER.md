@@ -1,4 +1,4 @@
-# Anastasia & Maxim — Home Dog Sitting · Design System (MASTER)
+# Nastya & Max — Home Dog Sitting · Design System (MASTER)
 
 Source of truth for colour, type, spacing and motion. Page-level overrides go in `design-system/pages/<page>.md`.
 

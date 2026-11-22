@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.classList.add('js');</script>
 
-  <title data-i18n="meta.title">Anastasia &amp; Maxim, home dog sitting</title>
+  <title data-i18n="meta.title">Nastya &amp; Max, home dog sitting</title>
   <meta name="description" data-i18n-attr="content:meta.desc"
     content="Your dog stays with a caring couple who work from home: three walks a day, sofa allowed, the dog beach nearby. Real reviews from real owners.">
-  <meta property="og:title" content="Anastasia &amp; Maxim, home dog sitting">
+  <meta property="og:title" content="Nastya &amp; Max, home dog sitting">
   <meta property="og:description"
     content="Three walks a day, sofa allowed, the dog beach nearby. Your dog is never home alone.">
   <meta property="og:image" content="assets/img/hero-anastasia-with-cocker-spaniel.jpg">
@@ -1567,12 +1567,42 @@
       font-size: 15px;
     }
 
+    /* booking buttons jump here: skip the section's top padding so both contact options are on screen */
+    #contact {
+      scroll-margin-top: calc(92px - var(--section-y));
+    }
+
+    /* short screens (small or sideways phones): jump to the end of the page, where both options fit */
+    @media (max-height: 620px) {
+      #contact {
+        scroll-margin-top: -1000px;
+      }
+    }
+
+    /* two equal columns side by side, stacked on phones */
     .cta-actions {
-      margin-top: 36px;
+      width: fit-content;
+      max-width: 100%;
+      margin: 36px auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 16px;
+    }
+
+    .cta-option {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 16px;
+      gap: 12px;
+    }
+
+    .cta-option .cta-handle {
+      align-self: center;
+    }
+
+    @media (max-width: 640px) {
+      .cta-actions {
+        grid-template-columns: 1fr;
+      }
     }
 
     .cta-handle {
@@ -1655,7 +1685,7 @@
   <header class="topbar" id="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#top">
-        <span data-i18n="brand.name">Anastasia &amp; Maxim</span>
+        <span translate="no">Nastya &amp; Max</span>
         <small data-i18n="brand.tag">Dog sitting</small>
       </a>
       <div class="topbar-actions">
@@ -1664,7 +1694,7 @@
           <button type="button" data-lang="es" aria-pressed="false">ES</button>
           <button type="button" data-lang="ru" aria-pressed="false">RU</button>
         </div>
-        <a class="btn btn--dark btn--sm" href="https://t.me/stasialomex" target="_blank" rel="noopener" data-i18n="nav.book">Book a stay</a>
+        <a class="btn btn--dark btn--sm" href="#contact" data-i18n="nav.book">Book a stay</a>
       </div>
     </div>
   </header>
@@ -1684,19 +1714,19 @@
         <div class="hero-media">
           <div class="hero-photo">
             <img src="assets/img/hero-anastasia-with-cocker-spaniel.jpg" width="720" height="960"
-              alt="Anastasia on the sofa next to a black-and-tan cocker spaniel" data-i18n-attr="alt:alt.hero"
+              alt="Nastya on the sofa next to a black-and-tan cocker spaniel" data-i18n-attr="alt:alt.hero"
               fetchpriority="high">
           </div>
           <figure class="hero-polaroid">
             <img src="assets/img/hero-max-with-merle-dog.jpg" width="640" height="640"
-              alt="Maxim hugging a fluffy merle dog on the sofa" data-i18n-attr="alt:alt.heroMax" loading="eager">
+              alt="Max hugging a fluffy merle dog on the sofa" data-i18n-attr="alt:alt.heroMax" loading="eager">
           </figure>
         </div>
 
         <p class="hero-intro">
-          <img src="assets/img/anastasia-and-maxim.jpg" width="360" height="360" alt="Anastasia and Maxim by the sea"
+          <img src="assets/img/anastasia-and-maxim.jpg" width="360" height="360" alt="Nastya and Max by the sea"
             data-i18n-attr="alt:alt.couple">
-          <span data-i18n="hero.by">Home dog sitting<br>by <strong>Anastasia &amp; Maxim</strong></span>
+          <span data-i18n="hero.by">Home dog sitting<br>by <strong>Nastya &amp; Max</strong></span>
         </p>
       </div>
     </section>
@@ -1713,7 +1743,7 @@
           <li><a href="#guests" data-i18n="toc.guests">Our guests</a></li>
           <li><a href="#reviews" data-i18n="toc.reviews">Reviews</a></li>
         </ol>
-        <a class="btn btn--dark" href="https://t.me/stasialomex" target="_blank" rel="noopener">
+        <a class="btn btn--dark" href="#contact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
             stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -1733,10 +1763,10 @@
           <div class="eyebrow" data-num="001" data-reveal><i></i><span data-i18n="about.label">About us</span></div>
           <h2 class="h2 h2--statement" data-reveal data-i18n="about.title">What matters most to us<span>is that every
               dog feels calm, comfortable and cared for while their owner is away.</span></h2>
-          <p class="lead" data-reveal data-i18n="about.p1">Hi! We're Anastasia and Maxim, a couple who adore animals of
+          <p class="lead" data-reveal data-i18n="about.p1">Hi! We're Nastya and Max, a couple who adore animals of
             every breed and personality. We've cared for tiny pups and big breeds like the Belgian Shepherd, and we look
             after every pet as if it were our own, making sure they feel safe, happy and at home.</p>
-          <p class="lead" data-reveal data-i18n="about.p2">We're young IT and business professionals working from home,
+          <p class="lead" data-reveal data-i18n="about.p2">We both work from home in IT and business,
             so we're around most of the day, with plenty of time for play, walks and quiet cuddles.</p>
           <p class="lead" data-reveal data-i18n="about.p3">Before every stay, we meet with you to get to know each
             other and ask for your instructions, preferences and any little nuances, so that your time away causes as
@@ -1768,13 +1798,13 @@
         <aside class="aside--right" aria-hidden="false">
           <div class="aside-photos">
             <figure data-reveal style="--i:0"><img src="assets/img/anastasia-cocker-spaniel-kiss.jpg" width="800"
-                height="1000" loading="lazy" decoding="async" alt="A cocker spaniel giving Anastasia a kiss"
+                height="1000" loading="lazy" decoding="async" alt="A cocker spaniel giving Nastya a kiss"
                 data-i18n-attr="alt:alt.kiss"></figure>
             <figure data-reveal style="--i:1"><img src="assets/img/max-hugging-shepherd-mix.jpg" width="800"
-                height="1000" loading="lazy" decoding="async" alt="Maxim hugging a shepherd-type dog in the living room"
+                height="1000" loading="lazy" decoding="async" alt="Max hugging a shepherd-type dog in the living room"
                 data-i18n-attr="alt:alt.maxShepherd"></figure>
             <figure data-reveal style="--i:2"><img src="assets/img/max-with-italian-greyhound.jpg" width="800"
-                height="1000" loading="lazy" decoding="async" alt="Maxim on the sofa with an Italian greyhound"
+                height="1000" loading="lazy" decoding="async" alt="Max on the sofa with an Italian greyhound"
                 data-i18n-attr="alt:alt.maxGreyhound"></figure>
           </div>
         </aside>
@@ -1793,7 +1823,7 @@
           <ul class="fit-list">
             <li data-reveal data-i18n="fit.1">You need a sitter for a weekend, a week or a month</li>
             <li data-reveal data-i18n="fit.2">Your dog gets anxious when left alone. Don't worry, there are two of us,
-              so we can accommodate this and make sure your dog is never left alone with us.</li>
+              so we can accommodate this and make sure your dog is never left home alone.</li>
             <li data-reveal data-i18n="fit.3">You want a trustworthy sitter who always keeps in touch while you're
               away</li>
             <li data-reveal data-i18n="fit.4">Your dog needs special care (medication, puppy care, etc.), we've got
@@ -1838,7 +1868,7 @@
           <li data-reveal style="--i:0">
             <figure>
               <img src="assets/img/walk-by-the-sea.jpg" width="800" height="1000" loading="lazy" decoding="async"
-                alt="Maxim on a seaside viewpoint with a black-and-white dog" data-i18n-attr="alt:alt.walkSea">
+                alt="Max on a seaside viewpoint with a black-and-white dog" data-i18n-attr="alt:alt.walkSea">
               <figcaption data-i18n="cap.coast">Walks along the coast</figcaption>
             </figure>
           </li>
@@ -2157,7 +2187,7 @@
               flip it.</span>
             <span class="hint-touch" data-i18n="guests.hintTouch">Tap a badge to flip it.</span>
           </p>
-          <a class="btn btn--dark rail-cta" href="https://t.me/stasialomex" target="_blank" rel="noopener">
+          <a class="btn btn--dark rail-cta" href="#contact">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
               stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -2371,18 +2401,32 @@
         <h2 class="cta-title" data-reveal data-i18n="cta.title">We'll be glad<br><em>to host your dog!</em></h2>
         <p class="cta-text" data-reveal data-i18n="cta.text">Drop us a message with your dates and a short description
           of your dog, and we'll get back to you.</p>
-        <!-- Telegram contact. All "Book a stay" buttons (top bar, contents box, guests section)
-             and the two links below open t.me/stasialomex: to change the account, search for it. -->
+        <!-- Contact options. All "Book a stay" buttons (top bar, contents box, guests section) scroll here.
+             To change the Telegram account, search for stasialomex. To change the WhatsApp number,
+             search for 34654728032 (the links) and "654 72 80 32" (the visible number). -->
         <div class="cta-actions" data-reveal>
-          <a class="btn btn--accent" href="https://t.me/stasialomex" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
-              <path d="m21.854 2.147-10.94 10.939" />
-            </svg>
-            <span data-i18n="cta.tg">Message us on Telegram</span>
-          </a>
-          <a class="cta-handle" href="https://t.me/stasialomex" target="_blank" rel="noopener">@stasialomex</a>
+          <div class="cta-option">
+            <a class="btn btn--accent" href="https://t.me/stasialomex" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+                <path d="m21.854 2.147-10.94 10.939" />
+              </svg>
+              <span data-i18n="cta.tg">Message us on Telegram</span>
+            </a>
+            <a class="cta-handle" href="https://t.me/stasialomex" target="_blank" rel="noopener">@stasialomex</a>
+          </div>
+          <div class="cta-option">
+            <a class="btn btn--dark" href="https://wa.me/34654728032" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="m3 21 1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+              </svg>
+              <span data-i18n="cta.wa">Message us on WhatsApp</span>
+            </a>
+            <a class="cta-handle" href="https://wa.me/34654728032" target="_blank" rel="noopener">+34 654 72 80 32</a>
+          </div>
         </div>
       </div>
     </section>
@@ -2393,7 +2437,7 @@
        ===================================================================== -->
   <footer class="footer">
     <div class="footer-inner">
-      <span data-i18n="footer.copy">© 2026 Anastasia &amp; Maxim · Home dog sitting</span>
+      <span data-i18n="footer.copy">© 2026 Nastya &amp; Max · Home dog sitting</span>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="es" aria-pressed="false">ES</button>
@@ -2430,19 +2474,18 @@
         },
 
         es: {
-          'meta.title': 'Anastasia y Maxim, cuidado de perros en casa',
+          'meta.title': 'Nastya y Max, cuidado de perros en casa',
           'meta.desc': 'Tu perro se queda con una pareja cariñosa que trabaja desde casa: tres paseos al día, sofá permitido y la playa para perros al lado. Opiniones reales de dueños reales.',
           'nav.skip': 'Ir al contenido',
-          'brand.name': 'Anastasia y Maxim',
           'brand.tag': 'Cuidado de perros',
           'nav.book': 'Reservar',
 
           'hero.l1': 'Tu perro,',
           'hero.l2': '<em>como</em> en casa',
-          'hero.by': 'Cuidado de perros en casa<br>con <strong>Anastasia y Maxim</strong>',
-          'alt.hero': 'Anastasia en el sofá junto a un cocker spaniel negro y fuego',
-          'alt.heroMax': 'Maxim abrazando a un perro merle peludo en el sofá',
-          'alt.couple': 'Anastasia y Maxim junto al mar',
+          'hero.by': 'Cuidado de perros en casa<br>con <strong>Nastya y Max</strong>',
+          'alt.hero': 'Nastya en el sofá junto a un cocker spaniel negro y fuego',
+          'alt.heroMax': 'Max abrazando a un perro merle peludo en el sofá',
+          'alt.couple': 'Nastya y Max junto al mar',
 
           'toc.aria': 'En esta página',
           'toc.about': 'Sobre nosotros',
@@ -2454,8 +2497,8 @@
 
           'about.label': 'Sobre nosotros',
           'about.title': 'Lo que más nos importa<span>es que cada perro se sienta tranquilo, cómodo y bien cuidado mientras su dueño está fuera.</span>',
-          'about.p1': '¡Hola! Somos Anastasia y Maxim, una pareja que adora a los animales de todas las razas y personalidades. Hemos cuidado de perritos pequeños y de razas grandes como el pastor belga, y cuidamos a cada mascota como si fuera nuestra, asegurándonos de que se sienta segura, feliz y como en casa.',
-          'about.p2': 'Somos jóvenes profesionales de IT y negocios que trabajamos desde casa, así que estamos ahí la mayor parte del día, con mucho tiempo para jugar, pasear y dar mimos.',
+          'about.p1': '¡Hola! Somos Nastya y Max, una pareja que adora a los animales de todas las razas y personalidades. Hemos cuidado de perritos pequeños y de razas grandes como el pastor belga, y cuidamos a cada mascota como si fuera nuestra, asegurándonos de que se sienta segura, feliz y como en casa.',
+          'about.p2': 'Trabajamos en tecnología y negocios desde casa, así que estamos ahí la mayor parte del día, con mucho tiempo para jugar, pasear y dar mimos.',
           'about.p3': 'Antes de cada estancia quedamos contigo para conocernos y que nos cuentes tus instrucciones, preferencias y cualquier pequeño detalle, para que tu ausencia le afecte lo menos posible a tu peludo.',
           'about.p4': 'Vivimos a una hora al sur de Barcelona, pero podemos ir en coche a Barcelona o a ciudades cercanas para recoger y llevar a tu perro.',
           'fact.1': 'Trabajamos desde casa: tu perro tendrá compañía, atención y mimos todo el día.',
@@ -2465,14 +2508,14 @@
           'fact.5': 'Vivimos cerca de la playa para perros y hay un pequeño parque justo frente a nuestro edificio.',
           'fact.6': 'Experiencia con perros mayores, cachorros y perros que no se llevan muy bien con otros.',
           'about.link': 'Escríbenos',
-          'alt.kiss': 'Un cocker spaniel dándole un beso a Anastasia',
-          'alt.maxShepherd': 'Maxim abrazando a un perro tipo pastor en el salón',
-          'alt.maxGreyhound': 'Maxim en el sofá con un galgo italiano',
+          'alt.kiss': 'Un cocker spaniel dándole un beso a Nastya',
+          'alt.maxShepherd': 'Max abrazando a un perro tipo pastor en el salón',
+          'alt.maxGreyhound': 'Max en el sofá con un galgo italiano',
 
           'fit.label': '¿Es para ti?',
           'fit.title': '<span class="muted">Si te reconoces aquí,</span> deberíamos conocernos:',
           'fit.1': 'Necesitas a alguien que cuide de tu perro un fin de semana, una semana o un mes',
-          'fit.2': 'Tu perro se pone nervioso cuando se queda solo. Tranquilo: somos dos, así que podemos organizarnos para que tu perro nunca se quede solo con nosotros.',
+          'fit.2': 'Tu perro se pone nervioso cuando se queda solo. Tranquilo: somos dos, así que podemos organizarnos para que tu perro nunca se quede solo en casa.',
           'fit.3': 'Quieres un cuidador de confianza que siempre te mantenga al tanto mientras estás fuera',
           'fit.4': 'Tu perro necesita cuidados especiales (medicación, cuidados de cachorro, etc.): cuenta con nosotros.',
           'alt.vizslaSofa': 'Un braco húngaro dormido y acurrucado en el sofá',
@@ -2487,7 +2530,7 @@
           'cap.sofa': 'Siestas en el sofá permitidas',
           'cap.sunset': 'Atardecer junto al mar',
           'cap.balcony': 'Aire fresco en el balcón',
-          'alt.walkSea': 'Maxim en un mirador junto al mar con un perro blanco y negro',
+          'alt.walkSea': 'Max en un mirador junto al mar con un perro blanco y negro',
           'alt.sofaNap': 'Un perro blanco y marrón durmiendo panza arriba en el sofá',
           'alt.cliff': 'Un perro merle sentado en la costa rocosa al atardecer',
           'alt.balcony': 'Un perro mirando desde el balcón',
@@ -2527,25 +2570,25 @@
 
           'cta.label': 'Reserva',
           'cta.title': '¡Estaremos encantados<br><em>de cuidar a tu perro!</em>',
-          'cta.text': 'Escríbenos con tus fechas y una breve descripción de tu perro, y te responderemos.',
+          'cta.text': 'Escríbenos con tus fechas y una breve descripción de tu perro, y te contestamos enseguida.',
           'cta.tg': 'Escríbenos por Telegram',
-          'footer.copy': '© 2026 Anastasia y Maxim · Cuidado de perros en casa'
+          'cta.wa': 'Escríbenos por WhatsApp',
+          'footer.copy': '© 2026 Nastya y Max · Cuidado de perros en casa'
         },
 
         ru: {
-          'meta.title': 'Анастасия и Максим, передержка собак дома',
+          'meta.title': 'Настя и Максим, передержка собак дома',
           'meta.desc': 'Ваша собака поживёт у заботливой пары, которая работает из дома: три прогулки в день, можно на диван, рядом пляж для собак. Настоящие отзывы владельцев.',
           'nav.skip': 'Перейти к содержанию',
-          'brand.name': 'Анастасия и Максим',
           'brand.tag': 'Передержка собак',
           'nav.book': 'Забронировать',
 
-          'hero.l1': 'Ваша собака',
-          'hero.l2': '<em>как</em> дома',
-          'hero.by': 'Домашняя передержка собак<br>у <strong>Анастасии и Максима</strong>',
-          'alt.hero': 'Анастасия на диване рядом с чёрно-подпалым кокер-спаниелем',
+          'hero.l1': '<em>Второй</em> дом',
+          'hero.l2': 'для вашего<br>питомца',
+          'hero.by': 'Домашняя передержка собак<br>у <strong>Насти и Максима</strong>',
+          'alt.hero': 'Настя на диване рядом с чёрно-подпалым кокер-спаниелем',
           'alt.heroMax': 'Максим обнимает пушистую мраморную собаку на диване',
-          'alt.couple': 'Анастасия и Максим у моря',
+          'alt.couple': 'Настя и Максим у моря',
 
           'toc.aria': 'На этой странице',
           'toc.about': 'О нас',
@@ -2556,19 +2599,19 @@
           'toc.cta': 'Забронировать передержку',
 
           'about.label': 'О нас',
-          'about.title': 'Для нас главное,<span>чтобы каждая собака чувствовала себя спокойно, уютно и под заботой, пока хозяина нет рядом.</span>',
-          'about.p1': 'Привет! Мы Анастасия и Максим, пара, которая обожает животных любых пород и характеров. Мы заботились и о крохах, и о крупных породах вроде бельгийской овчарки. Мы относимся к каждому питомцу как к своему, чтобы ему было спокойно, радостно и уютно, как дома.',
-          'about.p2': 'Мы молодые специалисты в IT и бизнесе и работаем из дома, поэтому почти весь день рядом, и у нас много времени на игры, прогулки и спокойные обнимашки.',
-          'about.p3': 'Перед каждой передержкой мы встречаемся с вами, чтобы познакомиться и узнать все инструкции, пожелания и нюансы. Так ваш отъезд дастся вашему хвостику как можно легче.',
-          'about.p4': 'Мы живём в часе езды к югу от Барселоны, но можем на машине приехать в Барселону или соседние города, чтобы забрать и привезти вашу собаку.',
+          'about.title': 'Нам важно одно:<span>чтобы вашей собаке было спокойно, уютно и хорошо, пока вас нет рядом.</span>',
+          'about.p1': 'Привет! Мы Настя и Максим, и мы обожаем собак любых пород и характеров. У нас гостили и совсем малыши, и здоровяки вроде бельгийской овчарки. Каждого хвостика мы принимаем как своего, чтобы ему было весело, спокойно и уютно, совсем как дома.',
+          'about.p2': 'Мы оба работаем из дома, в IT и бизнесе, так что почти весь день рядом. Времени хватает и на игры, и на прогулки, и на обнимашки на диване.',
+          'about.p3': 'Перед каждой передержкой мы обязательно встречаемся. Знакомимся с собакой и обсуждаем все её привычки, ваши пожелания и мелочи. Так ваш отъезд пройдёт для хвостика как можно легче.',
+          'about.p4': 'Мы живём в часе езды к югу от Барселоны, но можем сами забрать и привезти собаку из Барселоны или соседних городов.',
           'fact.1': 'Мы работаем из дома. У собаки весь день будет компания, внимание и ласка.',
           'fact.2': 'Три прогулки в день: утром, днём и вечером.',
           'fact.3': 'Квартира, удобная для собак, с закрытым балконом.',
-          'fact.4': 'Собакам можно на диван. Комфорт входит в программу.',
+          'fact.4': 'Собакам можно на диван.',
           'fact.5': 'Рядом пляж для собак, а прямо перед домом есть небольшой парк.',
           'fact.6': 'Есть опыт с пожилыми собаками, щенками и собаками, которые не очень ладят с другими.',
           'about.link': 'Написать нам',
-          'alt.kiss': 'Кокер-спаниель целует Анастасию',
+          'alt.kiss': 'Кокер-спаниель целует Настю',
           'alt.maxShepherd': 'Максим обнимает собаку овчарочьего типа в гостиной',
           'alt.maxGreyhound': 'Максим на диване с левреткой',
 
@@ -2598,7 +2641,7 @@
           'stay.afterText': 'Вы забираете счастливую и спокойную собаку, иногда даже с новой игрушкой.',
 
           'guests.label': 'Некоторые из наших гостей',
-          'guests.title': 'Некоторые из наших недавних гостей.<span>Смелее, они обожают внимание.</span>',
+          'guests.title': 'Некоторые из наших недавних гостей.',
           'guests.hint': 'Проведите курсором вдоль перекладины, потяните бейдж вниз или кликните, чтобы его перевернуть.',
           'guests.hintTouch': 'Нажмите на бейдж, чтобы его перевернуть.',
           'guests.cta': 'Забронировать передержку',
@@ -2629,10 +2672,11 @@
           'reviews.showTranslation': 'Показать перевод',
 
           'cta.label': 'Бронирование',
-          'cta.title': 'Будем рады<br><em>принять вашу собаку!</em>',
+          'cta.title': 'Ждём вашего хвостика<br><em>в гости!</em>',
           'cta.text': 'Напишите нам даты и пару слов о вашей собаке, и мы с вами свяжемся.',
           'cta.tg': 'Написать нам в Telegram',
-          'footer.copy': '© 2026 Анастасия и Максим · Домашняя передержка собак'
+          'cta.wa': 'Написать нам в WhatsApp',
+          'footer.copy': '© 2026 Настя и Максим · Домашняя передержка собак'
         }
       };
 
