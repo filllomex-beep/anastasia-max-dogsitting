@@ -23,8 +23,8 @@ Small, personal, trusted. Two people, their flat, their walks. Calm and warm, ne
 | `--accent` | `#B4432E` | italic accent words, checks, reviewer names, CTA (5.7:1 on bg) |
 | `--accent-soft` | `#F2E1DA` | avatar circles, chip dots |
 | `--terracotta` `--sage` `--navy` `--mustard` | `#C4573F` `#6E8B76` `#2E4357` `#D4A343` | lanyard straps + badge bands only |
-| `--telegram` (`--telegram-hover`) | `#26A5E4` (`#1C96D3`) | Telegram button only, with `--ink` text (≥ 5.5:1) |
-| `--whatsapp` (`--whatsapp-hover`) | `#25D366` (`#1FBE5B`) | WhatsApp button only, with `--ink` text (≥ 7.5:1) |
+| `--telegram` | `#26A5E4` | Telegram icon only (button itself is `--bg` with ink text + hairline, `--paper` on hover) |
+| `--whatsapp` | `#25D366` | WhatsApp icon only (same page-coloured button as Telegram) |
 
 No gradients except material textures (metal rail, woven strap). No purple/pink.
 
@@ -45,7 +45,21 @@ No gradients except material textures (metal rail, woven strap). No purple/pink.
 - Easing: entrances `cubic-bezier(0.16, 1, 0.3, 1)`; UI `cubic-bezier(0.4, 0, 0.2, 1)`.
 - Durations: hover 0.2s; reveals 0.7s with 70ms stagger; badge flip 0.8s.
 - Lanyards: spring-damped pendulum (k 38, c 3.2) + pull spring (k 140, c 9); transforms only.
-- `prefers-reduced-motion`: reveals instant, no floating chips, no physics, flip without rotation.
+- Dog walk (real video, never a cutout): `assets/intro/dog-walk-{1080p|720p}-120fps.mp4` (2.5 MB / 1.1 MB, 4.4s) —
+  `dog.mp4` (golden retriever trailing a black leash), flat-field graded so the studio is exactly `--bg` (#F5F2ED;
+  frame ÷ clean studio plate × page colour, luminance shoulder so light fur doesn't clip), RIFE-interpolated to 120fps
+  with in-betweens spaced by measured walking distance, sped up ~1.4×. The source ends mid-frame, so the
+  last gait cycle (62 frames, 338px stride @1080p) is repeated, shifted left one stride per cycle with a RIFE
+  bridge at each seam, until the dog and leash have left the frame. Plays first on load on a full-screen layer
+  (z 60, background `--bg`), scroll locked; 2.0s into the clip (1.7s on portrait) the paper drops away and the video is redrawn in a WebGL
+  canvas that keys out --bg with an exact un-mix (pixel-identical over the page, no blend modes; no WebGL / file:// → the
+  layer just dissolves .9s) — the dog and leash walk out in front of the hero as it enters; at clip end the layer fades .5s and is removed. A skip instead dissolves
+  the whole layer (opacity 1.2s ease-ui + 1.05 push-in). Hero entrance, text first: title lines pop up (.15s/.3s; scale .82→1 + fade, `--ease-pop`
+  cubic-bezier(0.34,1.5,0.64,1) — small overshoot, hero text only) → intro line pops (.48s) → photo slides up
+  (.6s, 96px) → polaroid slides up (.8s, 120px, via `translate` so its tilt is kept). Any scroll / swipe / key / tap / "Skip" jumps to the dissolve.
+  Skipped for reduced motion and `#hash` links; 4.5s to start (or autoplay refused) → the page just appears; `<head>`
+  failsafe at 6s. Portrait: video at 130% width, edges feathered by mask.
+- `prefers-reduced-motion`: reveals instant, no floating chips, no physics, flip without rotation, no dog walk.
 
 ## Anti-patterns
 No emoji icons (inline SVG only), no stock photos, no invented facts (prices, locations, counts),

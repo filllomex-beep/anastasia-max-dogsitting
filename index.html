@@ -4,7 +4,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      // DOG WALK: the dog walks across first, then the page appears.
+      // Skipped for reduced motion and deep links (#contact…). Failsafe: if the
+      // script never takes over, show the page after 6s.
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce && !location.hash) {
+        d.classList.add('is-intro');
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        setTimeout(function () {
+          if (d.classList.contains('intro-live')) return;
+          d.classList.remove('is-intro');
+          if (document.body) document.body.classList.add('is-loaded');
+        }, 6000);
+      }
+    })();
+  </script>
+  <link rel="preload" as="image" href="assets/intro/dog-walk-poster-720.webp" fetchpriority="high">
 
   <title data-i18n="meta.title">Nastya &amp; Max, home dog sitting</title>
   <meta name="description" data-i18n-attr="content:meta.desc"
@@ -44,9 +63,7 @@
 
       /* contact buttons: official brand colours (use dark text, white is unreadable on them) */
       --telegram: #26A5E4;
-      --telegram-hover: #1C96D3;
       --whatsapp: #25D366;
-      --whatsapp-hover: #1FBE5B;
 
       /* lanyard straps / badge bands */
       --terracotta: #C4573F;
@@ -59,12 +76,14 @@
 
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-ui: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-pop: cubic-bezier(0.34, 1.5, 0.64, 1);   /* small overshoot — hero text pop only */
 
       --gutter: clamp(16px, 4vw, 40px);
       --section-y: clamp(96px, 13vw, 176px);
       --w-text: 680px;
       --w-wide: 1040px;
       --w-page: 1200px;
+
     }
 
     /* =====================================================================
@@ -318,22 +337,33 @@
       background: #2a2826;
     }
 
-    .btn--telegram {
-      background: var(--telegram);
-      color: var(--ink);
-    }
-
-    .btn--telegram:hover {
-      background: var(--telegram-hover);
-    }
-
+    /* Telegram / WhatsApp: page-coloured buttons, only the icon in the brand colour */
+    .btn--telegram,
     .btn--whatsapp {
-      background: var(--whatsapp);
+      background: var(--bg);
       color: var(--ink);
+      box-shadow: inset 0 0 0 1px rgba(21, 20, 19, .16);
     }
 
+    .btn--telegram:hover,
     .btn--whatsapp:hover {
-      background: var(--whatsapp-hover);
+      background: var(--paper);
+      box-shadow: inset 0 0 0 1px rgba(21, 20, 19, .28);
+    }
+
+    .btn--telegram svg,
+    .btn--whatsapp svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+
+    .btn--telegram svg {
+      color: var(--telegram);
+    }
+
+    .btn--whatsapp svg {
+      color: var(--whatsapp);
     }
 
     .btn--sm {
@@ -385,28 +415,44 @@
 
     /* room for descenders (g, p, д) inside the clipping mask;
        the negative margin keeps the original line spacing */
+    /* the negative margin keeps the original line spacing */
     .hero-title .line {
       display: block;
-      overflow: hidden;
       padding-bottom: .22em;
       margin-bottom: -.16em;
     }
 
     .hero-title .line>span {
       display: inline-block;
+      transform-origin: 30% 90%;
     }
 
-    /* start fully below the (taller) mask */
+    /* Entrance order (body.is-loaded): title lines → intro line pop up,
+       then photo → polaroid slide up from below. Delays live here so the order is easy to retune. */
     .js .hero-title .line>span {
-      transform: translate3d(0, 130%, 0);
-      transition: transform 1s var(--ease-out);
+      opacity: 0;
+      transform: translate3d(0, .3em, 0) scale(.82);
+      transition: transform .9s var(--ease-pop) .15s, opacity .45s var(--ease-out) .15s;
     }
 
     .js .hero-title .line:nth-child(2)>span {
-      transition-delay: .09s;
+      transition-delay: .3s;
+    }
+
+    .js .hero-intro {
+      opacity: 0;
+      transform: translate3d(0, 14px, 0) scale(.88);
+      transform-origin: 0 50%;
+      transition: transform .8s var(--ease-pop) .48s, opacity .4s var(--ease-out) .48s;
+    }
+
+    .js .is-loaded .hero-intro {
+      opacity: 1;
+      transform: none;
     }
 
     .js .is-loaded .hero-title .line>span {
+      opacity: 1;
       transform: none;
     }
 
@@ -432,15 +478,37 @@
       object-fit: cover;
     }
 
-    .js .hero-photo img {
-      transform: scale(1.06);
+    /* pictures follow the text: the photo frame rises, the image settles inside it */
+    .js .hero-photo {
       opacity: 0;
-      transition: transform 1.4s var(--ease-out), opacity .9s var(--ease-out);
+      translate: 0 96px;
+      transition: opacity .9s var(--ease-out) .6s, translate 1.2s var(--ease-out) .6s;
+    }
+
+    .js .hero-photo img {
+      transform: scale(1.08);
+      transition: transform 1.6s var(--ease-out) .6s;
+    }
+
+    .js .is-loaded .hero-photo {
+      opacity: 1;
+      translate: 0 0;
     }
 
     .js .is-loaded .hero-photo img {
       transform: none;
+    }
+
+    /* `translate` (not transform) so the polaroid keeps its tilt */
+    .js .hero-polaroid {
+      opacity: 0;
+      translate: 0 120px;
+      transition: opacity .9s var(--ease-out) .8s, translate 1.2s var(--ease-out) .8s;
+    }
+
+    .js .is-loaded .hero-polaroid {
       opacity: 1;
+      translate: 0 0;
     }
 
     .hero-polaroid {
@@ -1651,6 +1719,174 @@
     }
 
     /* =====================================================================
+       DOG WALK — the real video plays first
+       On load a full-screen layer in the page's own paper colour (the
+       video's studio is flat-field graded to exactly --bg): a golden
+       retriever trailing its leash walks through on its own (right → left),
+       and as it leaves the frame the layer dissolves into the page while the
+       hero plays its entrance. Any scroll / swipe / key / tap, or "Skip",
+       jumps straight to the dissolve. Video: assets/intro/ (dog.mp4,
+       interpolated to 120fps).
+       ===================================================================== */
+    html.is-intro {
+      overflow: hidden;           /* the page waits until the dog has walked through */
+    }
+
+    /* the top bar fades in with the page, not under the walking dog */
+    .topbar-inner {
+      transition: opacity .6s var(--ease-ui) .1s;
+    }
+
+    html.is-intro .topbar-inner {
+      opacity: 0;
+    }
+
+    .landing {
+      position: fixed;
+      inset: 0;
+      z-index: 60;                /* above the top bar */
+      overflow: hidden;
+      background: var(--bg);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    html:not(.js) .landing {
+      display: none;
+    }
+
+    .js.is-intro .landing,
+    .landing.is-on {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .landing.is-on.is-leaving {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.2s var(--ease-ui);
+    }
+
+    /* Reveal while the dog is still walking: the paper drops away and the dog
+       keeps walking out over the hero as the text pops up behind it.
+       The video is redrawn into a WebGL canvas that keys out the studio colour
+       (exactly --bg) with an exact un-mix, so over the page it is pixel-identical
+       to the video and the dog stays solid in front of the text. */
+    .landing.is-on.is-revealing {
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .landing-canvas {
+      display: none;
+    }
+
+    .landing.is-gl .landing-canvas {
+      display: block;
+    }
+
+    .landing.is-gl .landing-video:not(.landing-canvas) {
+      opacity: 0;               /* keeps decoding; the canvas shows its frames */
+    }
+
+    /* no WebGL (or a page opened from file://, where the video can't be read):
+       the dog layer simply dissolves as the hero enters */
+    .landing.is-on.is-revealing.no-gl {
+      opacity: 0;
+      transition: opacity .9s var(--ease-ui);
+    }
+
+    .landing.is-revealing .landing-skip {
+      visibility: hidden;
+    }
+
+    .landing.is-on.is-revealing.is-leaving {
+      transition-duration: .5s;
+    }
+
+    .landing.is-revealing .landing-frame {
+      transform: none;
+    }
+
+    .landing-frame {
+      position: absolute;
+      inset: 0;
+      transform-origin: 50% 60%;
+      transition: transform 1.6s var(--ease-out);
+    }
+
+    /* a slow push-in while it dissolves */
+    .landing.is-leaving .landing-frame {
+      transform: scale(1.05);
+    }
+
+    .landing-video {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* portrait: show the whole dog — the clip runs wide across the middle,
+       its edges feathered into the page colour */
+    @media (max-aspect-ratio: 6/5) {
+      .landing-video {
+        inset: auto;
+        top: 56%;
+        left: -15%;
+        width: 130%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        transform: translateY(-56%);
+        -webkit-mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent);
+        mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent);
+      }
+    }
+
+    .landing-skip {
+      position: absolute;
+      right: var(--gutter);
+      bottom: clamp(20px, 4vh, 40px);
+      z-index: 2;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 999px;
+      background: none;
+      font: 500 11px/1 var(--font-ui);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      cursor: pointer;
+      animation: skip-in .8s var(--ease-out) 1.2s both;
+      transition: color .2s var(--ease-ui), background-color .2s var(--ease-ui);
+    }
+
+    .landing-skip:hover {
+      color: var(--ink);
+      background: rgba(21, 20, 19, .05);
+    }
+
+    .landing-skip:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @keyframes skip-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media print {
+      .landing {
+        display: none;
+      }
+    }
+
+    /* =====================================================================
        REDUCED MOTION
        ===================================================================== */
     @media (prefers-reduced-motion: reduce) {
@@ -1658,11 +1894,30 @@
         scroll-behavior: auto;
       }
 
+      .landing {
+        display: none !important;
+      }
+
       .js [data-reveal],
       .js .hero-title .line>span,
       .js .hero-photo img {
         opacity: 1 !important;
         transform: none !important;
+        transition: none !important;
+      }
+
+      .js .hero-intro,
+      .js .hero-photo {
+        opacity: 1 !important;
+        transform: none !important;
+        translate: none !important;
+        transition: none !important;
+      }
+
+      /* polaroid keeps its tilt (transform) — only the slide is removed */
+      .js .hero-polaroid {
+        opacity: 1 !important;
+        translate: none !important;
         transition: none !important;
       }
 
@@ -1692,6 +1947,20 @@
 
 <body>
   <a class="skip-link" href="#main" data-i18n="nav.skip">Skip to content</a>
+
+  <!-- =====================================================================
+       DOG WALK — real video of a golden retriever trailing its leash, walking
+       across the page; plays first on load, then dissolves into the hero
+       (see CSS + JS "DOG WALK")
+       ===================================================================== -->
+  <div class="landing" id="landing">
+    <div class="landing-frame">
+      <video class="landing-video" id="landing-video" muted playsinline preload="auto" aria-hidden="true"
+        poster="assets/intro/dog-walk-poster-720.webp" disablepictureinpicture disableremoteplayback></video>
+      <canvas class="landing-video landing-canvas" id="landing-canvas" aria-hidden="true"></canvas>
+    </div>
+    <button class="landing-skip" id="landing-skip" type="button" data-i18n="intro.skip">Skip</button>
+  </div>
 
   <!-- =====================================================================
        TOP BAR — brand, language switcher, booking
@@ -2586,7 +2855,8 @@
           'cta.text': 'Escríbenos con tus fechas y una breve descripción de tu perro, y te contestamos enseguida.',
           'cta.tg': 'Escríbenos por Telegram',
           'cta.wa': 'Escríbenos por WhatsApp',
-          'footer.copy': '© 2026 Nastya y Max · Cuidado de perros en casa'
+          'footer.copy': '© 2026 Nastya y Max · Cuidado de perros en casa',
+          'intro.skip': 'Saltar'
         },
 
         ru: {
@@ -2688,7 +2958,8 @@
           'cta.text': 'Напишите нам даты и пару слов о вашей собаке, и мы с вами свяжемся.',
           'cta.tg': 'Написать нам в Telegram',
           'cta.wa': 'Написать нам в WhatsApp',
-          'footer.copy': '© 2026 Настя и Максим · Домашняя передержка собак'
+          'footer.copy': '© 2026 Настя и Максим · Домашняя передержка собак',
+          'intro.skip': 'Пропустить'
         }
       };
 
@@ -2852,7 +3123,10 @@
         [...list.children].forEach((li, i) => li.style.setProperty('--i', i % 4));
       });
 
-      requestAnimationFrame(() => document.body.classList.add('is-loaded'));
+      // hero entrance — during the dog walk it plays as the layer dissolves (see DOG WALK)
+      if (!document.documentElement.classList.contains('is-intro')) {
+        requestAnimationFrame(() => document.body.classList.add('is-loaded'));
+      }
 
       /* ===================================================================
          LANYARD RAIL — spring physics (transforms only)
@@ -3059,6 +3333,174 @@
           }
         }
       }
+
+      /* ===================================================================
+         DOG WALK — the real video plays first, then dissolves into the page
+         - On load (html.is-intro, set in <head>) a full-screen studio plays
+           assets/intro/dog-walk-{1080p|720p}-120fps.mp4: dog.mp4 (a golden
+           retriever trailing its leash), warm-graded and AI-interpolated
+           (RIFE) to 120fps with in-betweens spaced by measured walking
+           distance, so the walk is even and fluid.
+         - When only the dog's tail is still in view (REVEAL_AT) the studio
+           drops away (darken blend, see CSS) and the hero entrance plays while
+           the dog and leash finish walking out over it; at the end of the
+           clip the layer fades and is removed.
+         - Any scroll / swipe / key / tap, or "Skip", goes straight to the
+           dissolve. If the video can't start within LOAD_LIMIT (slow network,
+           autoplay blocked e.g. iOS Low Power Mode) the page simply appears.
+         =================================================================== */
+      (() => {
+        const root = document.documentElement;
+        const layer = document.getElementById('landing');
+        const showPage = () => {
+          root.classList.remove('is-intro');
+          document.body.classList.add('is-loaded');
+        };
+        if (!layer) { showPage(); return; }
+        if (!root.classList.contains('is-intro')) { layer.remove(); return; }
+        root.classList.add('intro-live');   // tells the <head> failsafe we've got it
+        layer.classList.add('is-on');
+        window.scrollTo(0, 0);
+
+        const video = document.getElementById('landing-video');
+        const skip = document.getElementById('landing-skip');
+        // seconds into the clip when the page starts to appear (1.5s before only the
+        // dog's tail is left in view, at 3.5s): the dog walks out over the hero.
+        // Portrait screens crop the clip wider (130%), so the dog reaches the edge sooner.
+        const REVEAL_AT = window.matchMedia('(max-aspect-ratio: 6/5)').matches ? 1.7 : 2.0;
+        const LOAD_LIMIT = 4500;   // ms to get the video playing before skipping the intro
+
+        const big = window.innerWidth * Math.min(window.devicePixelRatio || 1, 2) > 1300;
+        video.src = big ? 'assets/intro/dog-walk-1080p-120fps.mp4' : 'assets/intro/dog-walk-720p-120fps.mp4';
+        video.muted = true;
+        video.playsInline = true;
+
+        let leaving = false, started = false;
+        const leave = () => {
+          if (leaving) return;
+          leaving = true;
+          off();
+          layer.classList.add('is-leaving');
+          showPage();                                        // unlock + hero entrance underneath
+          setTimeout(() => { video.pause(); layer.remove(); }, 1300);
+        };
+
+        // WebGL keyer: studio colour → transparent. Exact un-mix, so
+        // alpha·dog + (1−alpha)·paper reproduces the video pixel over the page.
+        const keyer = () => {
+          const canvas = document.getElementById('landing-canvas');
+          const gl = canvas && canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false });
+          if (!gl || !video.videoWidth) return null;
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          const sh = (type, src) => {
+            const o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return o;
+          };
+          const prog = gl.createProgram();
+          gl.attachShader(prog, sh(gl.VERTEX_SHADER,
+            'attribute vec2 p; varying vec2 uv;' +
+            'void main(){ uv = vec2(p.x * .5 + .5, .5 - p.y * .5); gl_Position = vec4(p, 0., 1.); }'));
+          gl.attachShader(prog, sh(gl.FRAGMENT_SHADER,
+            'precision mediump float; uniform sampler2D t; varying vec2 uv;' +
+            'const vec3 B = vec3(245., 242., 237.) / 255.;' +            // --bg
+            'void main(){' +
+            '  vec3 c = texture2D(t, uv).rgb;' +
+            // how far darker than the studio (alpha needed to explain c); lighter-than-studio
+            // codec noise of a few levels must stay clear, so that side is weighted gently
+            '  vec3 d3 = max((B - c) / B, (c - B) * 1.5);' +
+            '  float d = max(d3.r, max(d3.g, d3.b));' +
+            '  float a = max(smoothstep(.035, .14, d), d);' +           // fur solid, noise clear
+            '  a = clamp(a, 0., 1.);' +
+            '  gl_FragColor = vec4(clamp(c - (1. - a) * B, vec3(0.), vec3(a)), a);' + // premultiplied
+            '}'));
+          gl.linkProgram(prog);
+          if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
+          gl.useProgram(prog);
+          gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+          const loc = gl.getAttribLocation(prog, 'p');
+          gl.enableVertexAttribArray(loc);
+          gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+          gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          gl.viewport(0, 0, canvas.width, canvas.height);
+          return () => {
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+          };
+        };
+
+        // natural end: reveal the page around the walking dog, then fade the layer once the clip ends
+        const reveal = () => {
+          if (leaving) return;
+          leaving = true;
+          off();
+          let draw = null;
+          try { draw = keyer(); if (draw) draw(); } catch (e) { draw = null; }
+          if (draw) {
+            layer.classList.add('is-gl');
+            const next = (fn) => ('requestVideoFrameCallback' in video)
+              ? video.requestVideoFrameCallback(fn) : requestAnimationFrame(fn);
+            const loop = () => { if (!layer.isConnected) return; draw(); next(loop); };
+            next(loop);
+          } else {
+            layer.classList.add('no-gl');
+          }
+          layer.classList.add('is-revealing');
+          showPage();
+          let gone = false;
+          const finish = () => {
+            if (gone) return;
+            gone = true;
+            layer.classList.add('is-leaving');
+            setTimeout(() => { video.pause(); layer.remove(); }, 600);
+          };
+          video.addEventListener('ended', finish, { once: true });
+          setTimeout(finish, ((video.duration - video.currentTime) || 1) * 1000 + 400);
+        };
+
+        const onKey = (e) => {
+          if ([' ', 'ArrowDown', 'PageDown', 'End', 'Enter', 'Escape'].includes(e.key)) leave();
+        };
+        const triggers = ['wheel', 'touchmove', 'pointerdown'];
+        const off = () => {
+          triggers.forEach((t) => window.removeEventListener(t, leave));
+          window.removeEventListener('keydown', onKey);
+        };
+        triggers.forEach((t) => window.addEventListener(t, leave, { passive: true }));
+        window.addEventListener('keydown', onKey);
+        if (skip) skip.addEventListener('click', leave);
+
+        const watch = () => {
+          const check = () => {
+            if (leaving) return true;
+            if (video.duration && video.currentTime >= REVEAL_AT) { reveal(); return true; }
+            return false;
+          };
+          if ('requestVideoFrameCallback' in video) {
+            const cb = () => { if (!check()) video.requestVideoFrameCallback(cb); };
+            video.requestVideoFrameCallback(cb);
+          } else {
+            const tick = () => { if (!check()) requestAnimationFrame(tick); };
+            requestAnimationFrame(tick);
+          }
+        };
+        const start = () => {
+          if (started || leaving) return;
+          started = true;
+          const p = video.play();
+          if (p && p.catch) p.catch(leave);                  // autoplay refused: just show the page
+          watch();
+        };
+        video.addEventListener('canplaythrough', start, { once: true });
+        video.addEventListener('ended', leave, { once: true });
+        video.addEventListener('error', leave, { once: true });
+        if (video.readyState >= 4) start();
+        setTimeout(() => { if (!started) leave(); }, LOAD_LIMIT);
+      })();
 
       /* ===================================================================
          START
