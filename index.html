@@ -1847,6 +1847,27 @@
       }
     }
 
+    /* phones (portrait, ≤ 600px wide): a dedicated clip framed for the screen —
+       dog-walk-phone-120fps.mp4, a 1000×800 crop around the dog (25% larger than
+       the wide clip above, near-native sharpness on 3× screens, 0.8 MB). Its
+       edges are already page colour, so no mask. Hidden until it plays so the
+       wide-format poster never flashes. */
+    @media (max-aspect-ratio: 6/5) and (max-width: 600px) {
+      .landing-video {
+        top: 52%;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 5 / 4;
+        transform: translateY(-50%);
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+
+      .landing:not(.is-playing) .landing-video {
+        opacity: 0;
+      }
+    }
+
     .landing-skip {
       position: absolute;
       right: var(--gutter);
@@ -3364,16 +3385,36 @@
 
         const video = document.getElementById('landing-video');
         const skip = document.getElementById('landing-skip');
+        // phones get their own clip (see the phone CSS): framed for a portrait screen
+        const phone = window.matchMedia('(max-aspect-ratio: 6/5) and (max-width: 600px)').matches;
+        const PHONE_CLIP = 'assets/intro/dog-walk-phone-120fps.mp4';
         // seconds into the clip when the page starts to appear (1.5s before only the
         // dog's tail is left in view, at 3.5s): the dog walks out over the hero.
-        // Portrait screens crop the clip wider (130%), so the dog reaches the edge sooner.
-        const REVEAL_AT = window.matchMedia('(max-aspect-ratio: 6/5)').matches ? 1.7 : 2.0;
+        // Portrait screens crop the clip wider (130%), so the dog reaches the edge sooner;
+        // the phone clip is trimmed and framed tighter (same moment = 1.6s).
+        const REVEAL_AT = phone ? 1.6 : window.matchMedia('(max-aspect-ratio: 6/5)').matches ? 1.7 : 2.0;
         const LOAD_LIMIT = 4500;   // ms to get the video playing before skipping the intro
 
-        const big = window.innerWidth * Math.min(window.devicePixelRatio || 1, 2) > 1300;
-        video.src = big ? 'assets/intro/dog-walk-1080p-120fps.mp4' : 'assets/intro/dog-walk-720p-120fps.mp4';
         video.muted = true;
         video.playsInline = true;
+        if (phone) {
+          // Download the whole clip first and play it from memory: it never stalls
+          // mid-walk on a slow connection, and doesn't depend on mobile browsers
+          // honouring preload. (If that fails, stream it as usual.)
+          video.removeAttribute('poster');
+          video.addEventListener('playing', () => layer.classList.add('is-playing'), { once: true });
+          fetch(PHONE_CLIP)
+            .then((r) => { if (!r.ok) throw new Error(r.status); return r.blob(); })
+            .then((b) => {
+              if (leaving) return;
+              const blob = b.type ? b : new Blob([b], { type: 'video/mp4' });
+              video.src = URL.createObjectURL(blob);
+            })
+            .catch(() => { if (!leaving) video.src = PHONE_CLIP; });
+        } else {
+          const big = window.innerWidth * Math.min(window.devicePixelRatio || 1, 2) > 1300;
+          video.src = big ? 'assets/intro/dog-walk-1080p-120fps.mp4' : 'assets/intro/dog-walk-720p-120fps.mp4';
+        }
 
         let leaving = false, started = false;
         const leave = () => {
@@ -3497,7 +3538,11 @@
         };
         video.addEventListener('canplaythrough', start, { once: true });
         video.addEventListener('ended', leave, { once: true });
-        video.addEventListener('error', leave, { once: true });
+        video.addEventListener('error', () => {
+          // a phone browser that can't play the in-memory copy: stream the file instead
+          if (phone && video.src.startsWith('blob:')) { video.src = PHONE_CLIP; return; }
+          leave();
+        });
         if (video.readyState >= 4) start();
         setTimeout(() => { if (!started) leave(); }, LOAD_LIMIT);
       })();
