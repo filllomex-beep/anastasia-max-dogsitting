@@ -57,13 +57,8 @@ No gradients except material textures (metal rail, woven strap). No purple/pink.
   the whole layer (opacity 1.2s ease-ui + 1.05 push-in). Hero entrance, text first: title lines pop up (.15s/.3s; scale .82→1 + fade, `--ease-pop`
   cubic-bezier(0.34,1.5,0.64,1) — small overshoot, hero text only) → intro line pops (.48s) → photo slides up
   (.6s, 96px) → polaroid slides up (.8s, 120px, via `translate` so its tilt is kept). Any scroll / swipe / key / tap / "Skip" jumps to the dissolve.
-  Skipped for reduced motion and `#hash` links; 4.5s to start (or autoplay refused) → the page just appears; `<head>`
-  failsafe at 6s. Portrait (tablets, narrow windows): video at 130% width, edges feathered by mask.
-  Phones (portrait, ≤ 600px): own clip `dog-walk-phone-120fps.mp4` (614 KB, 3.8s, 1000×800, 120fps) — a 1200px
-  window around the dog (25% larger on screen, near-native on 3× screens), trimmed so the dog walks in at 0.07s and
-  is gone at the end; paper snapped flat to the page colour before encoding (no visible band, no mask), BT.709/sRGB
-  tagged. Shown full width at 52% height. Downloaded whole and played from memory (no mid-walk stalls, no reliance on
-  mobile preload); streams normally if that fails. Reveal at 1.6s (same moment as desktop's 2.0s).
+  Skipped for reduced motion, `#hash` links and phones (portrait ≤ 600px: no intro, the page loads directly); 4.5s to start (or autoplay refused) → the page just appears; `<head>`
+  failsafe at 6s. Portrait: video at 130% width, edges feathered by mask.
 - `prefers-reduced-motion`: reveals instant, no floating chips, no physics, flip without rotation, no dog walk.
 
 ## Anti-patterns
